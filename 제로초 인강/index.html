@@ -641,6 +641,8 @@
                     color: rgba(8,8,8,.5);
                     display: flex;
                     justify-content: flex-start;
+                    line-height: 23px;
+                    margin-bottom: 17px;
                 }
                 #main-newstand header .bold{
                     font-weight: bold;
@@ -649,6 +651,10 @@
                 #main-newstand-gray {
                     display: flex;
                     justify-content: flex-start;
+                    height: 50px;
+                    padding: 12px 20px;
+                    background-color: var(--color_option_bg);
+                    border-radius: 4px;
                 }
                 #main-newstand a{
                     text-decoration: none;
@@ -658,6 +664,27 @@
                 }
                 #main-newstand a:hover{
                     text-decoration: underline;
+                }
+                #main-newstand-grid{
+                    display: grid;
+                    justify-content: center;
+                    align-items: center;
+                    height: 224px;
+                    grid-template-rows: repeat(4, 1fr);
+                    width: 790px;
+                    grid-template-columns: repeat(6, 1fr);
+                    border: 1px solid var(--color_border_in);
+                    border-radius: 4px;
+                    margin-top: 18px;                    
+                    grid-gap: 1px;
+                    background-color: var(--color_border_in);
+                }
+                #main-newstand-grid > div{
+                    height: 100%;
+                    background-color: white;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
                 }
                 #main-newstand footer{
                     padding: 10px 0 11px;
@@ -735,11 +762,11 @@
                         </div>
                     </section>
                     <aside id="main-right-ad"></aside>
-                    <section id="main-weather" class="main-weather-and=stock">
+                    <section id="main-weather" class="main-weather-and-stock">
                         <header>날씨</header>
                         <div></div>
                     </section>
-                    <section id="main-stock" class="main-weather-and=stock">
+                    <section id="main-stock" class="main-weather-and-stock">
                         <header>증시</header>
                         <div></div>
                     </section>
