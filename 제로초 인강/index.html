@@ -195,6 +195,9 @@
                     border-radius: 33px;
                     text-align: left;
                 }
+                #search > form:hover{
+                    box-shadow: 0 2px 4px 0 rgba(0,0,0,.12);
+                }
                 #search-svg{
                     display: inline-flex;
                     justify-content: center;
@@ -218,6 +221,12 @@
                     border: none;
                     outline: none;
                 }
+                #search-input::placeholder{
+                    color: white;
+                }
+                #search-input:focus::placeholder{
+                    color: #e4e4e4;
+                }
                 #search-right{
                     flex: 1;
                     display: flex;
@@ -239,6 +248,9 @@
                     width: 24px;
                     height: 16px;
                 }
+                #search-keyboard:hover::before{
+                    filter: brightness(0.7);
+                }
                 #search-recent::before{
                     content:'';
                     display: block;
@@ -249,7 +261,19 @@
                     width: 10px;
                     height: 6px;
                 }
-                #search-button::before{
+                /* 여기도 추가해줌 !*/
+                #search-recent:hover::before{
+                    filter: brightness(0.7);
+                }
+                #search-button{
+                    padding: 17px 27px 16px 10px;
+                }
+                #search-button > div{
+                    background: #03c75a; /*이거 테두리에도 배경색 지정돼서 초록색으로 보임;;*/
+                    width: 25px;
+                    height: 25px;
+                }
+                #search-button > div::before{
                     content:'';
                     display: block;
                     background-image: url(./sp_main.04eb92b7.png);
