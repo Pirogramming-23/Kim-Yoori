@@ -26,17 +26,20 @@
         }
         #header-inner{
             width: 80%;
+            max-width: 1200px;
+            margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-        #header-logo{
-            position: relative;
-            left: 290px;
+        #nav-left{
             display: flex;
             align-items: center;
-            width: 48px; 
-            height: 34px;
+            gap: 16px;
+        }
+        #header-logo{
+            display: flex;
+            align-items: center;
         }
         #logo-image{
             background-image: url('./logo.png');
@@ -97,7 +100,7 @@
         .show-info {
             width: 16px;
             height: 16px;
-            background-image: url('./icon-info.png');
+            background-image: url('./arrow-down-s-line.png');
             background-size: contain;
             background-repeat: no-repeat;
             background-position: center;
@@ -105,6 +108,7 @@
             background-color: transparent;
             cursor: pointer;
             padding: 0;
+            vertical-align: -3px;
         }
     </style>
 </head>
@@ -112,37 +116,39 @@
     <div id="wrap">
         <header id="header">
             <div id="header-inner">
-                <div id="header-logo">
-                    <div id="logo-image"></div>
+                <div id="nav-left">
+                    <div id="header-logo">
+                        <div id="logo-image"></div>
+                    </div>
+                    <nav>
+                        <ul>
+                            <li><a href="#">Why GitHub?</a>
+                                <button href="#" class="show-info">
+                                    <span class="blind">About reason</span>
+                                </button>
+                            </li>
+                            <li><a href="#">Team</a></li>
+                            <li><a href="#">Enterprise</a></li>
+                            <li><a href="#">Explore</a>
+                                <button href="#" class="show-info">
+                                    <span class="blind">Explore more</span>
+                                </button>
+                            </li>
+                            <li><a href="#">Marketplace</a></li>
+                            <li><a href="#">Pricing</a>
+                                <button href="#" class="show-info">
+                                    <span class="blind">About pricing</span>
+                                </button>
+                            </li>
+                        </ul>
+                    </nav>
                 </div>
-                <nav>
-                    <ul>
-                        <li><a href="#">Why GitHub?</a>
-                            <button href="#" class="show-info">
-                                <span class="blind">About reason</span>
-                            </button>
-                        </li>
-                        <li><a href="#">Team</a></li>
-                        <li><a href="#">Enterprise</a></li>
-                        <li><a href="#">Explore</a>
-                            <button href="#" class="show-info">
-                                <span class="blind">Explore more</span>
-                            </button>
-                        </li>
-                        <li><a href="#">Marketplace</a></li>
-                        <li><a href="#">Pricing</a>
-                            <button href="#" class="show-info">
-                                <span class="blind">About pricing</span>
-                            </button>
-                        </li>
-                    </ul>
-                </nav>
                 <div id="header-search">
                     <input type="text" placeholder="Search GitHub">
                     <a href="#" id="signin">Sign in</a>
                     <a href="#" id="signup">Sign up</a>
                 </div>
-            </div>
+            </div>   
         </header>
         <main>
             <div id="left">
