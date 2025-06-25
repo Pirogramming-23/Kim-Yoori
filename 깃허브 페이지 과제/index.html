@@ -11,16 +11,18 @@
 </head>
 <body>
     <div id="wrap">
-        <div id="header">
-            <div id="header-logo"></div>
+        <header id="header">
+            <div id="header-logo">
+                <img src="./logo.png" alt="GitHub Logo">
+            </div>
             <nav>
                 <ul>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
+                    <li><a href="#">Why GitHub?</a></li>
+                    <li><a href="#">Team</a></li>
+                    <li><a href="#">Enterprise</a></li>
+                    <li><a href="#">Explore</a></li>
+                    <li><a href="#">Marketplace</a></li>
+                    <li><a href="#">Pricing</a></li>
                 </ul>
             </nav>
             <div id="header-search"></div>
@@ -28,21 +30,34 @@
                 <a href="#">Sign in</a>
                 <a href="#">Sign up</a>
             </div>
-        </div>
-        <div id="left">
-            <div id="main-text"></div>
-        </div>
-        <div id="right">
-            <form id="login">
-                <input type="text">
-                <input type="email">
-                <input type="password">
-                <button type="submit">Sign up for GitHub</button>
-            </form>
-        </div>
-        <div id="footer">
-            <img src="./footer.webp">
-        </div>
+        </header>
+        <main>
+            <div id="left">
+                <div id="main-text">
+                    <h1>Built for developers</h1>
+                    <p>GitHub is a development platform inspired by the 
+                        way you work. From <span>open source</span> to <span>business</span>, you
+                        can host and review code, manage projects, and build software alongside 50 million developers.</p>
+                </div>
+            </div>
+            <div id="right">
+                <form id="login">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" placeholder="Username">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="Email">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="Password">
+                    <p>Make sure it's least 15 characters OR at least 8 characters including a number and a lowercase letter.<a href="#" class="bluetext"> Learn more.</a></p>
+                    <button type="submit">Sign up for GitHub</button>
+                    <p>By clicking "Sign up for GitHub", you agree to our<a href="#" class="bluetext"> Terms of Service</a>and<a href="#" class="bluetext"> Privacy Statement.</a>
+                    We'll occasionally send you account related emails.</p>
+                </form>
+            </div>    
+        </main>
+        <footer id="footer">            
+            <img src="./footer.webp" alt="GitHub Characters Image">
+        </footer>
     </div>
 </body>
 </html>
