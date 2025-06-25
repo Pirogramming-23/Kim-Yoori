@@ -13,22 +13,34 @@
     <div id="wrap">
         <header id="header">
             <div id="header-logo">
-                <img src="./logo.png" alt="GitHub Logo">
+                <img src="./logo.png" alt="GitHub Logo" id="logo">
             </div>
             <nav>
                 <ul>
-                    <li><a href="#">Why GitHub?</a></li>
+                    <li><a href="#">Why GitHub?</a>
+                        <button href="#" class="show-info">
+                            <span class="blind">About reason</span>
+                        </button>
+                    </li>
                     <li><a href="#">Team</a></li>
                     <li><a href="#">Enterprise</a></li>
-                    <li><a href="#">Explore</a></li>
+                    <li><a href="#">Explore</a>
+                        <button href="#" class="show-info">
+                            <span class="blind">Explore more</span>
+                        </button>
+                    </li>
                     <li><a href="#">Marketplace</a></li>
-                    <li><a href="#">Pricing</a></li>
+                    <li><a href="#">Pricing</a>
+                        <button href="#" class="show-info">
+                            <span class="blind">About pricing</span>
+                        </button>
+                    </li>
                 </ul>
             </nav>
-            <div id="header-search"></div>
-            <div>
-                <a href="#">Sign in</a>
-                <a href="#">Sign up</a>
+            <div id="header-search">
+                <input type="text" placeholder="Search GitHub">
+                <a href="#" id="signin">Sign in</a>
+                <a href="#" id="signup">Sign up</a>
             </div>
         </header>
         <main>
