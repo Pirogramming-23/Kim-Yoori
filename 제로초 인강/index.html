@@ -107,6 +107,8 @@
             /*위치를 부모 기준으로 맞춰주기*/
             top: 3px;
             left: 1px;
+            /*가리면 안되니까 z-index 조절하기*/
+            z-index: 0;
             width: 30px;
             height: 30px;
             background-color: var(--color_option_bg);
@@ -117,6 +119,9 @@
             background-image: url(./sp_main.04eb92b7.png);
             width: 28px;
             height: 28px;
+            /*z-index는 형제 관계에서만 가능함, position: static이면 안됨*/
+            z-index: 1px;
+            position: relative;
             background-repeat: no-repeat;
             background-size: 422px 405px;
             background-position: -285px -152px;
@@ -124,8 +129,19 @@
         #main{
             height: 2000px;
         }
-    /* position: relative 같은 경우, left right bottom top을 통해 종종 걸음하듯이 옮길 수 있음*/
-    /* position: absolute 같은 경우, 조상 태그 중에 relative로 postion을 설정한 태그의 영역을 기준으로 움직이게 됨*/
+        .blind{
+            /* display : none으로 하면 시각장애인에게 음성으로 해당 부분에 대해 설명해줄 수 없음 */
+            position: absolute;
+            clip: rect(0,0,0,0);
+            width: 1px;
+            height: 1px;
+            margin: -1px;
+            overflow: hidden;
+        }
+    /* position: relative 같은 경우, left right bottom top을 통해 종종 제자리 걸음하듯이 옮길 수 있음 */
+    /* position: absolute 같은 경우, 조상 태그들 중에 position: static이 아닌 태그의 영역을 기준으로 움직이게 됨 */
+    /* position: fixed 같은 경우, 항상 같은 위치에 고정되어 있음 */
+    /* position: sticky 같은 경우, 처음에는 고정되어 있다가 스크롤하면 어느 구간부터 position: fixed가 돼서 없어짐 */
     </style>
 </head>
 <body>
@@ -133,7 +149,10 @@
         <div id="wrap-center">
             <div id="header">
                 <button id="header-hamburger">
+                    <!--::before가 존재-->
                     <div></div>
+                    <span class="blind">확장 영역</span>
+                    <!--::after를 넣을 예정-->
                 </button>
             </div>
             <div id="search"></div>
