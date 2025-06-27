@@ -24,6 +24,16 @@
             --badge-green: #35a67b;
             --shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
         }
+        .container {
+        width: 100%;
+        max-width: 1440px;
+        margin: 0 auto;
+        padding: 0 2rem;
+        }
+        header, main, #interview {
+            padding: 0;
+            width: 100%;
+        }
     </style>
 </head>
 <body>
@@ -36,61 +46,51 @@
     background-color: var(--black);
     color: var(--white);
     }
-
     header {
     width: 80%;
     max-width: 1440px;
-    min-width: 90px;
+    min-height: 90px;
     margin: 0 auto;
-    padding: 1rem 2rem;
+    padding: 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
     }
-
     .logo {
     width: 40px;
     height: 40px;
     background: url('./logo.svg') no-repeat center;
     background-size: contain;
     }
-
     #header-nav {
+    margin: 0;
     display: flex;
     align-items: center;
     gap: 24px;
     font-size: 1.5rem;
     }
-
     #header-logo {
     width: 40px;
     height: 40px;
     background-size: contain;
-    margin-right: 1.5rem;
     }
-
     #header-nav ul {
     list-style: none;
     display: flex;
     gap: 24px;
     }
-
     #header-nav ul li a {
     font-size: 1.2rem;
-    font-weight: 500;
-    transition: color 0.3s ease;
+    font-weight: 400;
     }
-
     #header-nav ul li a:hover {
     color: var(--green-1); 
     }
-
     #header-nav ul li a#page-now {
-    font-weight: bold;
     color: var(--green-1);
     }
-
     </style>
+    <div class="container">
     <div id="wrap">
     <header>
     <div class="logo"></div>
@@ -106,6 +106,115 @@
             </ul>    
         </nav>
   </header>
+  <style>
+    
+    /* 메인 내비게이션 */
+    #main-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1440px;
+    margin: 2rem auto;
+    padding: 0 2rem;
+    font-size: 1.2rem;
+    color: var(--white);
+    }
+
+    /* 오른쪽에 위치한 이전 기수 링크 */
+    #main-nav a {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    color: var(--white);
+    font-weight: 500;
+    }
+
+    #main-nav img {
+    width: 16px;
+    height: 16px;
+    }
+
+    /* 인터뷰 박스 영역 (3열 그리드) */
+    #interview {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    max-width: 1440px;
+    margin: 2rem auto;
+    padding: 0 2rem;
+    }    
+
+    /* 개별 인터뷰 박스 */
+    .interview-box {
+    background-color: #1a1a1a; /* 어두운 배경 */
+    border-radius: 12px;
+    padding: 1.5rem;
+    color: var(--white);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    /* 상단 영역 */
+    .box-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    }
+
+    /* 사진 영역 */
+    .box-top .img {
+    width: 60px;
+    height: 60px;
+    background-color: gray; /* 실제 이미지 대신 배경 */
+    border-radius: 50%;
+    }
+
+    /* 학과 텍스트 */
+    .box-top .major {
+    font-size: 0.9rem;
+    color: var(--green-1);
+    }
+
+    /* 햄버거 버튼 */
+    .hamburger {
+    background: url('./hamburger.png') no-repeat center;
+    background-size: 20px 20px;
+    width: 32px;
+    height: 32px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    }
+
+/* 마우스 호버 시 찌그러지게 (x축으로 눌림 + 살짝 회전) */
+    .hamburger:hover {
+    background: url('./hamburger_trans_.png') no-repeat center;
+    }
+
+    /* 하단 영역 */
+    .box-bottom {
+    font-size: 1rem;
+    font-weight: 400;
+    }
+
+    @media (max-width: 1024px) {
+        #interview {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media (max-width: 600px) {
+        #interview {
+            grid-template-columns: 1fr;
+        }
+    }
+
+  </style>
   <main>
     <div id="main-nav">
         <div>22기</div>
@@ -435,6 +544,7 @@
         </div>
     </div>
   </main>
+  </div>
 
    <footer id="footer">
         <div class="footer-container">
