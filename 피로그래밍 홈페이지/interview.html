@@ -6,10 +6,94 @@
     <link rel="icon" type="image/svg+xml" href="./apple-icon-57x57.png" sizes="32x32">
     <link rel="stylesheet" href="reset.css">
     <title>피로그래밍</title>
+    <style>
+        :root {
+            --black: #000;
+            --bg-3: rgb(222, 222, 222);
+            --bg-5: rgba(236, 236, 236, 0.466);
+            --bg-gray: #333333;
+            --scroll-bar-gray: #222222;
+            --line-gray: #606060;
+            --white: #fff;
+            --subtext-gray: #c6c6c6;
+            --green-1: #0bec12;
+            --green-2: rgba(73, 191, 77, 0.8);
+            --green-3: rgba(73, 191, 77, 0.6);
+            --blue: #2188b6;
+            --red: #c54422;
+            --badge-green: #35a67b;
+            --shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <div class="logo">Pirogramming</div>
+    <style>
+    body {
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    font-family: 'Pretendard', sans-serif;
+    background-color: var(--black);
+    color: var(--white);
+    }
+
+    header {
+    width: 80%;
+    max-width: 1440px;
+    min-width: 90px;
+    margin: 0 auto;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    }
+
+    .logo {
+    width: 40px;
+    height: 40px;
+    background: url('./logo.svg') no-repeat center;
+    background-size: contain;
+    }
+
+    #header-nav {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    font-size: 1.5rem;
+    }
+
+    #header-logo {
+    width: 40px;
+    height: 40px;
+    background-size: contain;
+    margin-right: 1.5rem;
+    }
+
+    #header-nav ul {
+    list-style: none;
+    display: flex;
+    gap: 24px;
+    }
+
+    #header-nav ul li a {
+    font-size: 1.2rem;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    }
+
+    #header-nav ul li a:hover {
+    color: var(--green-1); 
+    }
+
+    #header-nav ul li a#page-now {
+    font-weight: bold;
+    color: var(--green-1);
+    }
+
+    </style>
+    <div id="wrap">
+    <header>
+    <div class="logo"></div>
         <nav id="header-nav">
             <div id="header-logo"></div>
             <ul>
@@ -381,7 +465,7 @@
         </div>
         <div class="footer-bottom">ⓒ Pirogramming. 2023 All rights reserved.</div>
     </footer>
-
+    </div>
   <script src="script.js"></script>
 </body>
 </html>
