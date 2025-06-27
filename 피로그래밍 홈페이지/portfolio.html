@@ -103,54 +103,95 @@ body{
         <style>
             main{
                 display: grid;
-                grid-template-columns: repeat(auto-fix, minmax(300px, 1fr));
+                grid-template-rows: repeat(auto-fit, minmax(300px, 1fr));
                 gap: 16px;
             }
-            .project{
-                background-color: var(--bg-gray);
-                border-radius: 8px;
-                padding: 16px;
-                box-shadow: var(--shadow);
+            #main-nav {
                 display: flex;
-                flex-direction: column;
-                transition: transform 0.2s;
+                justify-content: space-between;
+                align-items: center;
+                height: 40px;
+                margin: 16px 0 16px;
+                padding: 0 4px;
+                font-size: 1.3rem;
+                color: var(--white);
             }
-            .project:hover{
-                transform: translateY(-2px);
+            #main-nav > div{
+                align-items: center;
             }
-            #project-logo{
+            #main-next a {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                color: var(--white);
+                text-decoration: none;
+                transition: color 0.2s ease;
+            }
+            .project {
+                display: flex;
+                gap: 20px;
+                padding: 20px;
+                background: var(--bg-gray);
+                border-radius: 10px;
+            }
+            .project:hover {
+                transform: translateY(-4px);
+            }
+            .project-logo {
+                flex-shrink: 0;
                 width: 150px;
                 height: 110px;
                 background-color: var(--white);
-                background-position: center;
-            }
-            #project-logo > img{
-                width: 150px;
-                height: 102.5px;
-                padding: 10px 20px;
+                border-radius: 8px;
+                display: flex;
                 align-items: center;
+                justify-content: center;
             }
-            #project-info-name{
-                font-size: 1.8rem;
+            .project-info {
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+                padding: 10px;
+            }
+            .project-info-name {
+                font-size: 1.3rem;
+                font-weight: bold;
+            }
+            .project-info-team {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 8px;
+            }
+            .team-member {
+                display: inline-block;
+                background: var(--bg-5);
+                color: black;
+                padding: 4px 8px;
+                border-radius: 6px;
+                font-size: 0.9rem;
+            }
+            .team-member:nth-child(1){
+                background-color: var(--blue);
+                color: var(--white);
             }
         </style>
-        <main>
+        <d>
             <div id="main-nav">
                 <div>22기</div>
                 <div id="main-next">
                     <a href="#">21기
-                    <img src="#" alt="오른쪽 화살표">
+                        <img src="./arrow-right.png" alt="오른쪽 화살표">
                     </a>
                 </div>
             </div>
             <div class="project">
-                <div id="project-logo">
+                <div class="project-logo">
                     <img src="logo.svg" alt="프로젝트 사진"> 
                 </div>
-                <div id="project-info">
-                    <div id="project-info-name">Codynow</div>
-                    <div id="project-info-text">스타일에 대한 고민을 덜어주는 AI 코디네이터, Codynow</div>
-                    <div id="project-info-team">
+                <div class="project-info">
+                    <div class="project-info-name">Codynow</div>
+                    <div class="project-info-text">스타일에 대한 고민을 덜어주는 AI 코디네이터, Codynow</div>
+                    <div class="project-info-team">
                         <div class="team-member">홍다오</div>
                         <div class="team-member">박서정</div>
                         <div class="team-member">최준혁</div>
@@ -158,14 +199,16 @@ body{
                         <div class="team-member">김은경</div>
                     </div>
                 </div>
-                <div id="hamburger"></div>
+                <div class="hamburger"></div>
             </div>
             <div class="project">
-                <div id="project-logo"></div>
-                <div id="project-info">
-                    <div id="project-info-name">걸음걸이</div>
-                    <div id="project-info-text">멈추지 않을 당신의 걸음을 위한 맞춤형 서비스</div>
-                    <div id="project-info-team">
+                <div class="project-logo">
+                    <img src="logo.svg" alt="프로젝트 사진"> 
+                </div>
+                <div class="project-info">
+                    <div class="project-info-name">걸음걸이</div>
+                    <div class="project-info-text">멈추지 않을 당신의 걸음을 위한 맞춤형 서비스</div>
+                    <div class="project-info-team">
                         <div class="team-member">남경민</div>
                         <div class="team-member">김규일</div>
                         <div class="team-member">김선주</div>
@@ -173,74 +216,141 @@ body{
                         <div class="team-member">이주원</div>
                     </div>
                 </div>
-                <div id="hamburger"></div>
+                <div class="hamburger"></div>
             </div>
             <div class="project">
-                <div id="project-logo"></div>
-                <div id="project-info">
-                    <div id="project-info-name">지성Park</div>
-                    <div id="project-info-text">지성있는 운전자들을 위한 실시간 주차장 정보 제공 서비스</div>
-                    <div id="project-info-team">
-                        <div class="team-name">정원준</div>
-                        <div class="team-name">김현진</div>
-                        <div class="team-name">임유지</div>
-                        <div class="team-name">김태린</div>                    
-                        <div class="team-name">박태희</div>
+                <div class="project-logo">
+                    <img src="logo.svg" alt="프로젝트 사진"> 
+                </div>
+                <div class="project-info">
+                    <div class="project-info-name">지성Park</div>
+                    <div class="project-info-text">지성있는 운전자들을 위한 실시간 주차장 정보 제공 서비스</div>
+                    <div class="project-info-team">
+                        <div class="team-member">정원준</div>
+                        <div class="team-member">김현진</div>
+                        <div class="team-member">임유지</div>
+                        <div class="team-member">김태린</div>                    
+                        <div class="team-member">박태희</div>
                     </div>
                 </div>
-                <div id="hamburger"></div>
+                <div class="hamburger"></div>
             </div>
             <div class="project">
-                <div id="project-logo"></div>
-                <div id="project-info">
-                    <div id="project-info-name">Urabi</div>
-                    <div id="project-info-text">사용자가 원하는 대로, 유럽 여행 동행 매칭 & 커뮤니티 서비스</div>
-                    <div id="project-info-team">
-                        <div class="team-name">민설아</div>
-                        <div class="team-name">유승인</div>
-                        <div class="team-name">최민석</div>
-                        <div class="team-name">김재원</div>
-                        <div class="team-name">이시은</div>
+                <div class="project-logo">
+                    <img src="logo.svg" alt="프로젝트 사진"> 
+                </div>
+                <div class="project-info">
+                    <div class="project-info-name">Urabi</div>
+                    <div class="project-info-text">사용자가 원하는 대로, 유럽 여행 동행 매칭 & 커뮤니티 서비스</div>
+                    <div class="project-info-team">
+                        <div class="team-member">민설아</div>
+                        <div class="team-member">유승인</div>
+                        <div class="team-member">최민석</div>
+                        <div class="team-member">김재원</div>
+                        <div class="team-member">이시은</div>
                     </div>
                 </div>
-                <div id="hamburger"></div>
+                <div class="hamburger"></div>
             </div>
             <div class="project">
-                <div id="project-logo"></div>
-                <div id="project-info">
-                    <div id="project-info-name">[Pictory</div>
-                    <div id="project-info-text">인생네컷으로 만드는 나만의 일기장</div>
-                    <div id="project-info-team">
-                        <div class="team-name">박수연</div>
-                        <div class="team-name">김은성</div>
-                        <div class="team-name">임진수</div>
-                        <div class="team-name">김수연</div>
+                <div class="project-logo">
+                    <img src="logo.svg" alt="프로젝트 사진"> 
+                </div>
+                <div class="project-info">
+                    <div class="project-info-name">Pictory</div>
+                    <div class="project-info-text">인생네컷으로 만드는 나만의 일기장</div>
+                    <div class="project-info-team">
+                        <div class="team-member">박수연</div>
+                        <div class="team-member">김은성</div>
+                        <div class="team-member">임진수</div>
+                        <div class="team-member">김수연</div>
                     </div>
                 </div>
-                <div id="hamburger"></div>
+                <div class="hamburger"></div>
             </div>
             <div class="project">
-                <div id="project-logo"></div>
-                <div id="project-info">
-                    <div id="project-info-name">온기록</div>
-                    <div id="project-info-text">함께한 순간을 기록하면 AI를 통해 반려친구의 마음을 전해주는 기록 서비스</div>
-                    <div id="project-info-team">
-                        <div class="team-name">박혜린</div>
-                        <div class="team-name">김영호</div>
-                        <div class="team-name">정재훈</div>
-                        <div class="team-name">한종서</div>
-                        <div class="team-name">조주영</div>
+                <div class="project-logo">
+                    <img src="logo.svg" alt="프로젝트 사진"> 
+                </div>
+                <div class="project-info">
+                    <div class="project-info-name">온기록</div>
+                    <div class="project-info-text">함께한 순간을 기록하면 AI를 통해 반려친구의 마음을 전해주는 기록 서비스</div>
+                    <div class="project-info-team">
+                        <div class="team-member">박혜린</div>
+                        <div class="team-member">김영호</div>
+                        <div class="team-member">정재훈</div>
+                        <div class="team-member">한종서</div>
+                        <div class="team-member">조주영</div>
                     </div>
                 </div>
-                <div id="hamburger"></div>
+                <div class="hamburger"></div>
             </div>
+        </div>
         </main>
+        <style>
+            #footer{
+                background-color: var(--bg-gray);
+                color: var(--white);
+                padding: 40px;
+                width: 100%;
+            }
+            #footer a{
+                display: flex;
+                justify-content: space-between;
+                flex-wrap: wrap;
+                gap: 40px;
+            }
+            #footer-left,
+                #footer-right {
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+                }
+            #rule {
+                font-weight: bold;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            }
+            #footer-icons {
+                display: flex;
+                gap: 12px;
+            }
+            .icon {
+                width: 32px;
+                height: 32px;
+                background-color: #ffffff;
+                border-radius: 50%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            #footer-email {
+                display: flex;
+                align-items: center;
+                font-size: 14px;
+            }
+            #footer-nav {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                list-style: none;
+                padding: 0;
+            }
+            #footer-bottom {
+                margin-top: 40px;
+                text-align: center;
+                font-size: 13px;
+                opacity: 0.6;
+                background-color: var(--scroll-bar-gray);
+            }
+        </style>
         <footer id="footer">
             <div id="footer-top">
                 <div id="footer-left">
                 <a href="#" id="rule">
                     PIROGRAMMING 회칙
-                    <img src="#" alt="오른쪽 화살표">
+                    <img src="./arrow-right.png" alt="오른쪽 화살표">
                 </a>
                 <div id="footer-icons">
                     <div class="icon">
@@ -274,6 +384,5 @@ body{
                 <div id="footer-copyright">ⓒ Pirogramming. 2023 All rights reserved.</div>
             </div>
         </footer>
-    </div>
 </body>
 </html>
