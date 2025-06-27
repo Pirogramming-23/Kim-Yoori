@@ -24,50 +24,51 @@
             --badge-green: #35a67b;
             --shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
         }
-        .container {
-        width: 100%;
-        max-width: 1440px;
-        margin: 0 auto;
-        padding: 0 2rem;
-        }
-        header, main, #interview {
-            padding: 0;
-            width: 100%;
-        }
     </style>
 </head>
 <body>
     <style>
     body {
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    font-family: 'Pretendard', sans-serif;
-    background-color: var(--black);
-    color: var(--white);
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        font-family: 'Pretendard', sans-serif;
+        background-color: var(--black);
+        color: var(--white);
+    }
+    .container{
+        max-width: 1444px;
+        margin: 0 auto;
+        padding: 0 2rem;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    header, main{
+        width: 100%;
+        padding: 0;
+        box-sizing: border-box;
     }
     header {
-    width: 80%;
-    max-width: 1440px;
-    min-height: 90px;
-    margin: 0 auto;
-    padding: 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+        width: 80%;
+        max-width: 1440px;
+        min-height: 90px;
+        margin: 0 auto;
+        padding: 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
     }
     .logo {
-    width: 40px;
-    height: 40px;
-    background: url('./logo.svg') no-repeat center;
-    background-size: contain;
+        width: 40px;
+        height: 40px;
+        background: url('./logo.svg') no-repeat center;
+        background-size: contain;
     }
     #header-nav {
-    margin: 0;
-    display: flex;
-    align-items: center;
-    gap: 24px;
-    font-size: 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 24px;
+        font-size: 1.5rem;
     }
     #header-logo {
     width: 40px;
@@ -75,7 +76,6 @@
     background-size: contain;
     }
     #header-nav ul {
-    list-style: none;
     display: flex;
     gap: 24px;
     }
@@ -113,87 +113,124 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative;
     width: 100%;
-    max-width: 1440px;
-    margin: 2rem auto;
     padding: 0 2rem;
     font-size: 1.2rem;
     color: var(--white);
+    box-sizing: border-box;
+    }
+
+    #main-nav > div:first-child {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 1.5rem;
     }
 
     /* 오른쪽에 위치한 이전 기수 링크 */
     #main-nav a {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    text-decoration: none;
-    color: var(--white);
-    font-weight: 500;
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--white);
+        font-weight: 500;
+        margin-left: auto;
+        padding: 0;
     }
 
     #main-nav img {
-    width: 16px;
-    height: 16px;
+        width: 16px;
+        height: 16px;
     }
 
     /* 인터뷰 박스 영역 (3열 그리드) */
     #interview {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-    max-width: 1440px;
-    margin: 2rem auto;
-    padding: 0 2rem;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+        width: 100%;
+        margin: 2rem auto;
+        padding: 0 2rem;
+        box-sizing: border-box;
     }    
 
     /* 개별 인터뷰 박스 */
     .interview-box {
-    background-color: #1a1a1a; /* 어두운 배경 */
-    border-radius: 12px;
-    padding: 1.5rem;
-    color: var(--white);
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        background-color: var(--line-gray); /* 어두운 배경 */
+        border-radius: 12px;
+        padding: 1.5rem;
+        color: var(--white);
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     }
 
     /* 상단 영역 */
     .box-top {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+        display: flex;
+        align-items: center;
+    }
+
+    .name-group {
+        font-size: 1.3rem;
+        display: flex;
+        align-items: flex-start;
+        gap: 0.5rem; /* 동그라미와 이름 사이 간격 */
+    }
+
+    .name-major-wrapper{
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
     }
 
     /* 사진 영역 */
     .box-top .img {
-    width: 60px;
-    height: 60px;
-    background-color: gray; /* 실제 이미지 대신 배경 */
-    border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        background-color: var(--white); /* 실제 이미지 대신 배경 */
+        border-radius: 50%;
+    }
+
+    .major {
+        background-color: var(--blue);
+        color: var(--white);
+        padding: 0.3rem 0.8rem;
+        border-radius: 12px;       /* 둥근 박스 */
+        font-size: 0.9rem;
+        display: inline-block;     /* 크기에 맞게 */
+        min-width: 50px;           /* 최소 너비 조절 가능 */
+        text-align: center;
+        margin-top: 0.25rem;
     }
 
     /* 학과 텍스트 */
     .box-top .major {
-    font-size: 0.9rem;
-    color: var(--green-1);
+        font-size: 0.9rem;
+        padding: 4px 8px;
+        border-radius: 6px;
+        font-size: 0.9rem;
     }
 
     /* 햄버거 버튼 */
     .hamburger {
-    background: url('./hamburger.png') no-repeat center;
-    background-size: 20px 20px;
-    width: 32px;
-    height: 32px;
-    border: none;
-    background-color: transparent;
-    cursor: pointer;
-    transition: transform 0.3s ease;
+        margin-left: auto;
+        background: url('./hamburger.png') no-repeat center;
+        background-size: 20px 20px;
+        width: 32px;
+        height: 32px;
+        border: none;
+        background-color: transparent;
+        cursor: pointer;
+        transition: transform 0.3s ease;
     }
 
 /* 마우스 호버 시 찌그러지게 (x축으로 눌림 + 살짝 회전) */
     .hamburger:hover {
-    background: url('./hamburger_trans_.png') no-repeat center;
+        background: url('./hamburger_trans_.png') no-repeat center;
     }
 
     /* 하단 영역 */
@@ -223,13 +260,18 @@
             <img src="./arrow-right.png">
         </a>
     </div>
+    
     <div id="interview">
         <div class="interview-box">
             <div class="box-top">
-                <div class="img"></div>
-                <div>김유리</div>
+                <div class="name-group">
+                    <div class="img"></div>
+                    <div class="name-major-wrapper">
+                    <div>김유리</div>
+                    <div class="major">전공</div>  <!-- 이름 밑에 둥근 박스 -->
+                    </div>
+                </div>
                 <button class="hamburger"></button>
-                <div clas="major"></div>
             </div>
             <div class="box-bottom">
                 <div>다짐 한 마디</div>
@@ -237,10 +279,14 @@
         </div>
         <div class="interview-box">
             <div class="box-top">
-                <div class="img"></div>
-                <div>김유리</div>
+                <div class="name-group">
+                    <div class="img"></div>
+                    <div class="name-major-wrapper">
+                    <div>김유리</div>
+                    <div class="major">전공</div>  <!-- 이름 밑에 둥근 박스 -->
+                    </div>
+                </div>
                 <button class="hamburger"></button>
-                <div clas="major"></div>
             </div>
             <div class="box-bottom">
                 <div>다짐 한 마디</div>
@@ -248,20 +294,14 @@
         </div>
         <div class="interview-box">
             <div class="box-top">
-                <div class="img"></div>
-                <div>김유리</div>
+                <div class="name-group">
+                    <div class="img"></div>
+                    <div class="name-major-wrapper">
+                    <div>김유리</div>
+                    <div class="major">전공</div>  <!-- 이름 밑에 둥근 박스 -->
+                    </div>
+                </div>
                 <button class="hamburger"></button>
-                <div clas="major"></div>
-            </div>
-            <div class="box-bottom">
-                <div>다짐 한 마디</div>
-            </div>
-        </div>
-        <div class="interview-box"><div class="box-top">
-                <div class="img"></div>
-                <div>김유리</div>
-                <button class="hamburger"></button>
-                <div clas="major"></div>
             </div>
             <div class="box-bottom">
                 <div>다짐 한 마디</div>
@@ -269,10 +309,14 @@
         </div>
         <div class="interview-box">
             <div class="box-top">
-                <div class="img"></div>
-                <div>김유리</div>
+                <div class="name-group">
+                    <div class="img"></div>
+                    <div class="name-major-wrapper">
+                    <div>김유리</div>
+                    <div class="major">전공</div>  <!-- 이름 밑에 둥근 박스 -->
+                    </div>
+                </div>
                 <button class="hamburger"></button>
-                <div clas="major"></div>
             </div>
             <div class="box-bottom">
                 <div>다짐 한 마디</div>
@@ -280,10 +324,14 @@
         </div>
         <div class="interview-box">
             <div class="box-top">
-                <div class="img"></div>
-                <div>김유리</div>
+                <div class="name-group">
+                    <div class="img"></div>
+                    <div class="name-major-wrapper">
+                    <div>김유리</div>
+                    <div class="major">전공</div>  <!-- 이름 밑에 둥근 박스 -->
+                    </div>
+                </div>
                 <button class="hamburger"></button>
-                <div clas="major"></div>
             </div>
             <div class="box-bottom">
                 <div>다짐 한 마디</div>
@@ -291,10 +339,14 @@
         </div>
         <div class="interview-box">
             <div class="box-top">
-                <div class="img"></div>
-                <div>김유리</div>
+                <div class="name-group">
+                    <div class="img"></div>
+                    <div class="name-major-wrapper">
+                    <div>김유리</div>
+                    <div class="major">전공</div>  <!-- 이름 밑에 둥근 박스 -->
+                    </div>
+                </div>
                 <button class="hamburger"></button>
-                <div clas="major"></div>
             </div>
             <div class="box-bottom">
                 <div>다짐 한 마디</div>
@@ -302,10 +354,14 @@
         </div>
         <div class="interview-box">
             <div class="box-top">
-                <div class="img"></div>
-                <div>김유리</div>
+                <div class="name-group">
+                    <div class="img"></div>
+                    <div class="name-major-wrapper">
+                    <div>김유리</div>
+                    <div class="major">전공</div>  <!-- 이름 밑에 둥근 박스 -->
+                    </div>
+                </div>
                 <button class="hamburger"></button>
-                <div clas="major"></div>
             </div>
             <div class="box-bottom">
                 <div>다짐 한 마디</div>
@@ -313,10 +369,14 @@
         </div>
         <div class="interview-box">
             <div class="box-top">
-                <div class="img"></div>
-                <div>김유리</div>
+                <div class="name-group">
+                    <div class="img"></div>
+                    <div class="name-major-wrapper">
+                    <div>김유리</div>
+                    <div class="major">전공</div>  <!-- 이름 밑에 둥근 박스 -->
+                    </div>
+                </div>
                 <button class="hamburger"></button>
-                <div clas="major"></div>
             </div>
             <div class="box-bottom">
                 <div>다짐 한 마디</div>
@@ -324,10 +384,14 @@
         </div>
         <div class="interview-box">
             <div class="box-top">
-                <div class="img"></div>
-                <div>김유리</div>
+                <div class="name-group">
+                    <div class="img"></div>
+                    <div class="name-major-wrapper">
+                    <div>김유리</div>
+                    <div class="major">전공</div>  <!-- 이름 밑에 둥근 박스 -->
+                    </div>
+                </div>
                 <button class="hamburger"></button>
-                <div clas="major"></div>
             </div>
             <div class="box-bottom">
                 <div>다짐 한 마디</div>
@@ -335,10 +399,14 @@
         </div>
         <div class="interview-box">
             <div class="box-top">
-                <div class="img"></div>
-                <div>김유리</div>
+                <div class="name-group">
+                    <div class="img"></div>
+                    <div class="name-major-wrapper">
+                    <div>김유리</div>
+                    <div class="major">전공</div>  <!-- 이름 밑에 둥근 박스 -->
+                    </div>
+                </div>
                 <button class="hamburger"></button>
-                <div clas="major"></div>
             </div>
             <div class="box-bottom">
                 <div>다짐 한 마디</div>
@@ -346,10 +414,14 @@
         </div>
         <div class="interview-box">
             <div class="box-top">
-                <div class="img"></div>
-                <div>김유리</div>
+                <div class="name-group">
+                    <div class="img"></div>
+                    <div class="name-major-wrapper">
+                    <div>김유리</div>
+                    <div class="major">전공</div>  <!-- 이름 밑에 둥근 박스 -->
+                    </div>
+                </div>
                 <button class="hamburger"></button>
-                <div clas="major"></div>
             </div>
             <div class="box-bottom">
                 <div>다짐 한 마디</div>
@@ -357,10 +429,14 @@
         </div>
         <div class="interview-box">
             <div class="box-top">
-                <div class="img"></div>
-                <div>김유리</div>
+                <div class="name-group">
+                    <div class="img"></div>
+                    <div class="name-major-wrapper">
+                    <div>김유리</div>
+                    <div class="major">전공</div>  <!-- 이름 밑에 둥근 박스 -->
+                    </div>
+                </div>
                 <button class="hamburger"></button>
-                <div clas="major"></div>
             </div>
             <div class="box-bottom">
                 <div>다짐 한 마디</div>
@@ -368,10 +444,14 @@
         </div>
         <div class="interview-box">
             <div class="box-top">
-                <div class="img"></div>
-                <div>김유리</div>
+                <div class="name-group">
+                    <div class="img"></div>
+                    <div class="name-major-wrapper">
+                    <div>김유리</div>
+                    <div class="major">전공</div>  <!-- 이름 밑에 둥근 박스 -->
+                    </div>
+                </div>
                 <button class="hamburger"></button>
-                <div clas="major"></div>
             </div>
             <div class="box-bottom">
                 <div>다짐 한 마디</div>
@@ -379,10 +459,14 @@
         </div>
         <div class="interview-box">
             <div class="box-top">
-                <div class="img"></div>
-                <div>김유리</div>
+                <div class="name-group">
+                    <div class="img"></div>
+                    <div class="name-major-wrapper">
+                    <div>김유리</div>
+                    <div class="major">전공</div>  <!-- 이름 밑에 둥근 박스 -->
+                    </div>
+                </div>
                 <button class="hamburger"></button>
-                <div clas="major"></div>
             </div>
             <div class="box-bottom">
                 <div>다짐 한 마디</div>
@@ -390,10 +474,14 @@
         </div>
         <div class="interview-box">
             <div class="box-top">
-                <div class="img"></div>
-                <div>김유리</div>
+                <div class="name-group">
+                    <div class="img"></div>
+                    <div class="name-major-wrapper">
+                    <div>김유리</div>
+                    <div class="major">전공</div>  <!-- 이름 밑에 둥근 박스 -->
+                    </div>
+                </div>
                 <button class="hamburger"></button>
-                <div clas="major"></div>
             </div>
             <div class="box-bottom">
                 <div>다짐 한 마디</div>
@@ -401,10 +489,14 @@
         </div>
         <div class="interview-box">
             <div class="box-top">
-                <div class="img"></div>
-                <div>김유리</div>
+                <div class="name-group">
+                    <div class="img"></div>
+                    <div class="name-major-wrapper">
+                    <div>김유리</div>
+                    <div class="major">전공</div>  <!-- 이름 밑에 둥근 박스 -->
+                    </div>
+                </div>
                 <button class="hamburger"></button>
-                <div clas="major"></div>
             </div>
             <div class="box-bottom">
                 <div>다짐 한 마디</div>
@@ -412,10 +504,14 @@
         </div>
         <div class="interview-box">
             <div class="box-top">
-                <div class="img"></div>
-                <div>김유리</div>
+                <div class="name-group">
+                    <div class="img"></div>
+                    <div class="name-major-wrapper">
+                    <div>김유리</div>
+                    <div class="major">전공</div>  <!-- 이름 밑에 둥근 박스 -->
+                    </div>
+                </div>
                 <button class="hamburger"></button>
-                <div clas="major"></div>
             </div>
             <div class="box-bottom">
                 <div>다짐 한 마디</div>
@@ -423,10 +519,14 @@
         </div>
         <div class="interview-box">
             <div class="box-top">
-                <div class="img"></div>
-                <div>김유리</div>
+                <div class="name-group">
+                    <div class="img"></div>
+                    <div class="name-major-wrapper">
+                    <div>김유리</div>
+                    <div class="major">전공</div>  <!-- 이름 밑에 둥근 박스 -->
+                    </div>
+                </div>
                 <button class="hamburger"></button>
-                <div clas="major"></div>
             </div>
             <div class="box-bottom">
                 <div>다짐 한 마디</div>
@@ -434,10 +534,14 @@
         </div>
         <div class="interview-box">
             <div class="box-top">
-                <div class="img"></div>
-                <div>김유리</div>
+                <div class="name-group">
+                    <div class="img"></div>
+                    <div class="name-major-wrapper">
+                    <div>김유리</div>
+                    <div class="major">전공</div>  <!-- 이름 밑에 둥근 박스 -->
+                    </div>
+                </div>
                 <button class="hamburger"></button>
-                <div clas="major"></div>
             </div>
             <div class="box-bottom">
                 <div>다짐 한 마디</div>
@@ -445,10 +549,14 @@
         </div>
         <div class="interview-box">
             <div class="box-top">
-                <div class="img"></div>
-                <div>김유리</div>
+                <div class="name-group">
+                    <div class="img"></div>
+                    <div class="name-major-wrapper">
+                    <div>김유리</div>
+                    <div class="major">전공</div>  <!-- 이름 밑에 둥근 박스 -->
+                    </div>
+                </div>
                 <button class="hamburger"></button>
-                <div clas="major"></div>
             </div>
             <div class="box-bottom">
                 <div>다짐 한 마디</div>
@@ -456,10 +564,14 @@
         </div>
         <div class="interview-box">
             <div class="box-top">
-                <div class="img"></div>
-                <div>김유리</div>
+                <div class="name-group">
+                    <div class="img"></div>
+                    <div class="name-major-wrapper">
+                    <div>김유리</div>
+                    <div class="major">전공</div>  <!-- 이름 밑에 둥근 박스 -->
+                    </div>
+                </div>
                 <button class="hamburger"></button>
-                <div clas="major"></div>
             </div>
             <div class="box-bottom">
                 <div>다짐 한 마디</div>
@@ -467,10 +579,14 @@
         </div>
         <div class="interview-box">
             <div class="box-top">
-                <div class="img"></div>
-                <div>김유리</div>
+                <div class="name-group">
+                    <div class="img"></div>
+                    <div class="name-major-wrapper">
+                    <div>김유리</div>
+                    <div class="major">전공</div>  <!-- 이름 밑에 둥근 박스 -->
+                    </div>
+                </div>
                 <button class="hamburger"></button>
-                <div clas="major"></div>
             </div>
             <div class="box-bottom">
                 <div>다짐 한 마디</div>
@@ -478,10 +594,14 @@
         </div>
         <div class="interview-box">
             <div class="box-top">
-                <div class="img"></div>
-                <div>김유리</div>
+                <div class="name-group">
+                    <div class="img"></div>
+                    <div class="name-major-wrapper">
+                    <div>김유리</div>
+                    <div class="major">전공</div>  <!-- 이름 밑에 둥근 박스 -->
+                    </div>
+                </div>
                 <button class="hamburger"></button>
-                <div clas="major"></div>
             </div>
             <div class="box-bottom">
                 <div>다짐 한 마디</div>
@@ -489,10 +609,14 @@
         </div>
         <div class="interview-box">
             <div class="box-top">
-                <div class="img"></div>
-                <div>김유리</div>
+                <div class="name-group">
+                    <div class="img"></div>
+                    <div class="name-major-wrapper">
+                    <div>김유리</div>
+                    <div class="major">전공</div>  <!-- 이름 밑에 둥근 박스 -->
+                    </div>
+                </div>
                 <button class="hamburger"></button>
-                <div clas="major"></div>
             </div>
             <div class="box-bottom">
                 <div>다짐 한 마디</div>
@@ -500,10 +624,14 @@
         </div>
         <div class="interview-box">
             <div class="box-top">
-                <div class="img"></div>
-                <div>김유리</div>
+                <div class="name-group">
+                    <div class="img"></div>
+                    <div class="name-major-wrapper">
+                    <div>김유리</div>
+                    <div class="major">전공</div>  <!-- 이름 밑에 둥근 박스 -->
+                    </div>
+                </div>
                 <button class="hamburger"></button>
-                <div clas="major"></div>
             </div>
             <div class="box-bottom">
                 <div>다짐 한 마디</div>
@@ -511,10 +639,14 @@
         </div>
         <div class="interview-box">
             <div class="box-top">
-                <div class="img"></div>
-                <div>김유리</div>
+                <div class="name-group">
+                    <div class="img"></div>
+                    <div class="name-major-wrapper">
+                    <div>김유리</div>
+                    <div class="major">전공</div>  <!-- 이름 밑에 둥근 박스 -->
+                    </div>
+                </div>
                 <button class="hamburger"></button>
-                <div clas="major"></div>
             </div>
             <div class="box-bottom">
                 <div>다짐 한 마디</div>
@@ -522,10 +654,14 @@
         </div>
         <div class="interview-box">
             <div class="box-top">
-                <div class="img"></div>
-                <div>김유리</div>
+                <div class="name-group">
+                    <div class="img"></div>
+                    <div class="name-major-wrapper">
+                    <div>김유리</div>
+                    <div class="major">전공</div>  <!-- 이름 밑에 둥근 박스 -->
+                    </div>
+                </div>
                 <button class="hamburger"></button>
-                <div clas="major"></div>
             </div>
             <div class="box-bottom">
                 <div>다짐 한 마디</div>
@@ -533,15 +669,34 @@
         </div>
         <div class="interview-box">
             <div class="box-top">
-                <div class="img"></div>
-                <div>김유리</div>
+                <div class="name-group">
+                    <div class="img"></div>
+                    <div class="name-major-wrapper">
+                    <div>김유리</div>
+                    <div class="major">전공</div>  <!-- 이름 밑에 둥근 박스 -->
+                    </div>
+                </div>
                 <button class="hamburger"></button>
-                <div clas="major"></div>
             </div>
             <div class="box-bottom">
                 <div>다짐 한 마디</div>
             </div>
         </div>
+        <div class="interview-box">
+            <div class="box-top">
+                <div class="name-group">
+                    <div class="img"></div>
+                    <div class="name-major-wrapper">
+                    <div>김유리</div>
+                    <div class="major">전공</div>  <!-- 이름 밑에 둥근 박스 -->
+                    </div>
+                </div>
+                <button class="hamburger"></button>
+            </div>
+            <div class="box-bottom">
+                <div>다짐 한 마디</div>
+            </div>
+        </div>        
     </div>
   </main>
   </div>

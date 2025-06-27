@@ -110,15 +110,34 @@ body{
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
-                height: 40px;
-                margin: 16px 0 16px;
-                padding: 0 4px;
-                font-size: 1.3rem;
+                position: relative;
+                width: 100%;
+                padding: 0 2rem;
+                font-size: 1.2rem;
                 color: var(--white);
+                box-sizing: border-box;
             }
-            #main-nav > div{
-                align-items: center;
+
+            #main-nav > div:first-child {
+                    position: absolute;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    font-size: 1.2rem;
             }
+
+
+                /* 오른쪽에 위치한 이전 기수 링크 */
+            #main-nav a {
+                    position: relative;
+                    display: flex;
+                    align-items: center;
+                    gap: 0.5rem;
+                    color: var(--white);
+                    font-weight: 500;
+                    margin-left: auto;
+                    padding: 0;
+            }
+           
             #main-next a {
                 display: flex;
                 align-items: center;
