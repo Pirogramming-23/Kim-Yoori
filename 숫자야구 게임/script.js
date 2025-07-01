@@ -42,6 +42,18 @@ function resetGame(){
 // 3. 유효성 검사
 // 입력칸 중 하나라도 비어 있으면 input만 비우고 넘어감
 
+function check_numbers(){
+    let n1 = document.getElementById('number1').value;
+    let n2 = document.getElementById('number2').value;
+    let n3 = document.getElementById('number3').value;
+
+    if(n1 ===''|| n2 === ''|| n3 ===''){
+        resetInput();
+        return;
+    }
+
+}
+
 // 4. 숫자 판정
 // 컴퓨터 정답과 비교하기
 // 숫자와 위치 일치하면 스트라이크(S)
