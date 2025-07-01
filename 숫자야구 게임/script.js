@@ -1,11 +1,43 @@
+
 // 1. 초기화 단계
-// 시도 횟수는 총 9번
-// 정답 숫자 3개 랜덤 생성
-// input 창 및 결과창 초기화
+let answer = [];
+let attempts = 9;
+
+function resetInput(){
+    document.getElementById('number1').value = '';
+    document.getElementById('number2').value = '';
+    document.getElementById('number3').value = '';
+}
+
+function resetGame(){
+    // 시도 횟수는 총 9번
+    attempts = 9;
+
+    // 정답 숫자 3개 랜덤 생성
+    answer = [];
+    while(answer.length < 3){
+        let num = Math.floor(Math.random() * 10);
+        //includes는 배열에 특정 값이 이미 있는지 확인하는 함수
+        if(!answer.includes(num)) { 
+            //push는 배열의 맨 끝에 새로운 값을 추가하는 함수
+            answer.push(num);
+        }
+    }
+    
+    // input 창 및 결과창 초기화
+    resetInput();
+    
+    document.getElementById('results').innerHTML = '';
+    document.getElementById('attempts').innerText = attempts;
+    document.getElementById('game-result-img').src = '';
+   
+    //submit_button 활성화
+    document.querySelector('.submit-button').disabled = false;
+}
 
 // 2. 입력
 // 사용자는 3개의 숫자를 각 input 칸에 입력
-// #submin_button 클릭 시 check_numbers() 실행
+// #submit_button 클릭 시 check_numbers() 실행
 
 // 3. 유효성 검사
 // 입력칸 중 하나라도 비어 있으면 input만 비우고 넘어감
@@ -17,7 +49,7 @@
 // 아무것도 일치하지 않으면 "O" 아웃
 
 // 5. 결과 출력
-// 결과 메시지 출력 (예: 1S 2B, O)
+// 결과 메시지 출력 (예: 1S 2B /또는 O)
 // 시도 횟수 -1
 
 // 6. 게임 종료 판단
