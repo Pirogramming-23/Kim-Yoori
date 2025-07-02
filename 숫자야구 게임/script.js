@@ -75,19 +75,29 @@ function check_numbers(){
     // 5. 결과 출력
     // 결과 메시지 출력 (예: 1S 2B /또는 O)
     // 시도 횟수 -1
-    if (strikes === && balls === 0){
-       resultText = 'O';
+    if (strikes === 0 && balls === 0){
+       resultText = `${out}`;
     }
     else {
         resultText = `${strikes}S ${balls}B`;
     }
     
-    document.getElementById('result').innerHTML += resultText + "<br>";
+    document.getElementById('results').innerHTML += resultText + "<br>";
     attempts --;
     document.getElementById('attempts').innerText = attempts;
+
+    // 6. 게임 종료 판단
+    // 3 스트라이크 시 승리 이미지 
+    // 시도 횟수 0이면 패배 이미지
+    // 종료 시 이미지 출력 및 버튼 활성화
+
+    if(strikes === 3){
+        document.getElementById('game-result-img').src = 'success.png';
+        document.querySelector('.submit-button').disabled = true;
+    }
+    else if(attempts === 0){
+        document.getElementById('game-result-img').src = 'fail.png';
+        document.querySelector('.submit-button').disabled = true;
+    }
 }
 
-// 6. 게임 종료 판단
-// 3 스트라이크 시 승리 이미지 
-// 시도 횟수 0이면 패배 이미지
-// 종료 시 이미지 출력 및 버튼 활성화
