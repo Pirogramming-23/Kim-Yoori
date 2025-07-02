@@ -69,20 +69,30 @@ function check_numbers(){
         else if (answer.includes(input[i])) {
             balls ++;
         }
-        
     }
     
     // 5. 결과 출력
     // 결과 메시지 출력 (예: 1S 2B /또는 O)
     // 시도 횟수 -1
+    let resultText = '';
     if (strikes === 0 && balls === 0){
-       resultText = `${out}`;
-    }
-    else {
-        resultText = `${strikes}S ${balls}B`;
+        resultText = `<span class="num-result out">O</span>`;
+    } else{
+        resultText = `
+            <span class="num-result strike">${strikes}S</span>
+            <span class="num-result ball">${balls}B</span>
+        `;
     }
     
-    document.getElementById('results').innerHTML += resultText + "<br>";
+    let resultHTML = `
+        <div class="check-result" style="width: 100%;">
+            <span class="left">${input.join(" ")}</span>
+            <span class="middle">:</span>
+            <span class="right">${resultText}</span>
+        </div>`;
+               
+    document.getElementById('results').innerHTML += resultHTML;
+
     attempts --;
     document.getElementById('attempts').innerText = attempts;
 
@@ -99,5 +109,8 @@ function check_numbers(){
         document.getElementById('game-result-img').src = 'fail.png';
         document.querySelector('.submit-button').disabled = true;
     }
+
+    resetInput();
 }
 
+resetGame();
