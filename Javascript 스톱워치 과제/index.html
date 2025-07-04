@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>피로그래밍 스톱워치</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h2>⏱️피로그래밍 스톱워치</h2>
+        <div class="time-box">
+            <div id="time">00 : 00</div>
+            <div class="buttons">
+                <input type="button" value="start" id="startBtn">
+                <input type="button" value="stop" id="stopbtn">
+                <input type="button" value="reset" id="resetBtn">
+            </div>
+        </div>
+
+        <div class="record-box">
+            <label class="custom-checkbox">
+                <input type="checkbox" >
+                <span class="checkmark"></span>
+            </label>
+            <h3>구간 기록</h3>
+            <button class="deleteBtn">
+                <img src="icon.png" alt="delete">
+            </button>
+        </div>
+            <ul class="record-list">
+                <li class="record-item">
+                    <!--<label class="custom-checkbox">
+                        <input type="checkbox">
+                        <span class="checkmark"></span>
+                    </label>--> <!--누르면 그 때 같이 추가-->
+                    <span class="record-time"></span>
+                </li>
+            </ul>
+    </div>
+</body>
+</html>

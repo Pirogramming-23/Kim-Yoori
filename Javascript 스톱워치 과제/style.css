@@ -1,0 +1,143 @@
+body{
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(235, 232, 232, 0.781);
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    padding: 50px;
+}
+
+.time-box{
+    display: flex;
+    flex-direction: column;
+    background-color: aliceblue;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    margin: 20px;
+    padding: 20px;
+    width: 400px;
+    height: 200px;
+    border-radius: 15px;
+    text-align: center;
+}
+
+#time{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+    margin: 10px;
+    padding: 10px;
+    font-size: 48px;
+    font-weight: bold;
+}
+
+h2{
+    text-align: center;
+    margin: 0;
+}
+
+input{
+    all: unset;
+}
+.buttons{
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+}
+.buttons input[type="button"]{
+    background-color: #e0e0e0;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+    border-radius: 12px;
+    margin: 20px;
+    padding: 12px;
+    cursor: pointer;
+}
+
+.buttons input[type="button"]:hover{
+    box-shadow: 4px 4px 8px rgba(0,0,0,0.3);
+}
+
+/* 구간 기록 관련 css*/
+
+.record-box{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: aliceblue;
+    padding: 10px;
+    width: 450px;
+    border-radius: 15px 15px 0 0;
+}
+
+.custom-checkbox input[type="checkbox"] {
+  display: none;
+}
+
+.custom-checkbox .checkmark {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    border: 2px solid #555;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    cursor: pointer;
+}
+
+.custom-checkbox input[type="checkbox"]:checked + .checkmark::after {
+  content: '✔';
+  font-size: 16px;
+  color: #555;
+}
+
+.record-box h3{
+    flex: 1;
+    text-align: center;
+    margin: 0;
+}
+
+.deleteBtn{
+    all: unset;
+    cursor: pointer;
+}
+
+.deleteBtn img {
+    width: 30px;
+    height: 30px;
+    padding-right: 5px;
+}
+
+.deleteBtn:hover img {
+  filter: brightness(0) saturate(100%) invert(14%) sepia(96%) saturate(7490%) hue-rotate(-6deg) brightness(94%) contrast(120%);
+}
+
+.record-list{
+    width: 450px;
+    /*height: 250px;*/
+    background-color: white;
+    margin-top: 0;
+    padding: 10px;
+    border-radius: 0 0 15px 15px;
+    /*overflow-y: scroll;*/
+}
+
+li{
+    list-style: none;
+}
+
+
+
