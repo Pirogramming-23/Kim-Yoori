@@ -2,9 +2,6 @@
 num = 0
 
 #6단계
-#배스킨라빈스31 게임은 참여자가 번갈아가며 숫자를 부른다. 
-#게임이 끝날 때까지 playerA와 playerB에게 번갈아가며 부를 숫자의 개수를 입력 받는 코드를 작성하여라.
-# 게임은 누군가 31을 부르면 끝난다.
 game_count = 1
 play_turn = "playerA"
 
@@ -26,8 +23,16 @@ while True:
         print("%s : %d" % (play_turn, game_count))
         game_count += 1
 
+    #7단계
+    #게임이 끝났을 때, 누가 이겼는지 화면에 출력하여라.
+    #playerA win!
+    #playerB win!
     if game_count > 31:
-       break
+        if play_turn == "playerA":
+           print("playerB win!")
+        else:
+           print("playerA win!")
+        break
 
     #차례 번갈아 가기
     if play_turn == "playerA":
