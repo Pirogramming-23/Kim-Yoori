@@ -81,6 +81,18 @@ input{
     border-radius: 15px 15px 0 0;
 }
 
+.record-box h3{
+    flex: 1;
+    text-align: center;
+    margin: 0;
+    line-height: 1;
+}
+
+.custom-checkbox{
+    display: flex;
+    align-items: center;
+}
+
 .custom-checkbox input[type="checkbox"] {
   display: none;
 }
@@ -88,7 +100,6 @@ input{
 .custom-checkbox .checkmark {
     width: 20px;
     height: 20px;
-    margin-right: 10px;
     border: 2px solid #555;
     border-radius: 50%;
     display: inline-flex;
@@ -113,11 +124,14 @@ input{
 .deleteBtn{
     all: unset;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding-right: 5px;
 }
 
 .deleteBtn img {
-    width: 30px;
-    height: 30px;
+    width: 26px;
+    height: 26px;
     padding-right: 5px;
 }
 
@@ -132,7 +146,24 @@ input{
     margin-top: 0;
     padding: 10px;
     border-radius: 0 0 15px 15px;
-    /*overflow-y: scroll;*/
+    max-height: 250px;
+    overflow-y: auto;
+}
+
+.record-item{
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6px 0;
+    
+}
+
+.record-time{
+    font-size: 19px;
+    color: #555;
+    flex: 1;
+    text-align: center;
 }
 
 li{

@@ -17,8 +17,10 @@ function stopTimer() {
 }
 
 function resetTimer() {
-    clearInterval(timerInterval);
-    timerInterval = null;
+    if(timerInterval !== null){
+        clearInterval(timerInterval);
+        timerInterval = null;        
+    }
 
     elapsedTime = 0;
     startTime = null;
@@ -103,6 +105,46 @@ selectAllCheckbox.addEventListener('change', () => {
     });
 });
 
+// 다크모드용 CSS 클래스 동적으로 생성 (선택)
+const darkModeStyle = document.createElement("style");
+darkModeStyle.textContent = `
+  .dark-mode {
+    background-color: #222;
+    color: #f0f0f0;
+  }
+
+  .dark-mode .time-box{
+    color: black;}
+  .dark-mode .record-box,
+  .dark-mode .record-list {
+    background-color: #333;
+    color: #f0f0f0;
+    box-shadow: 2px 2px 6px rgba(255, 255, 255, 0.1);
+  }
+
+  .dark-mode .record-time {
+    color: #ddd;
+  }
+
+  .dark-mode input[type="button"] {
+    background-color: #555;
+    color: white;
+  }
+
+  .dark-mode .checkmark {
+    border-color: #ccc;
+  }
+`;
+document.head.appendChild(darkModeStyle);
+const container = document.querySelector(".container");
+
+container.addEventListener("click", (e)=> {
+    if (e.target === container){
+        document.body.classList.toggle("dark-mode");
+    }
+})
+
+
 // 버튼에 이벤트 연결
 document.getElementById('startBtn').addEventListener('click', startTimer);
 document.getElementById('stopbtn').addEventListener('click', () => {
@@ -110,4 +152,6 @@ document.getElementById('stopbtn').addEventListener('click', () => {
   const time = document.getElementById('time').innerText;
   addRecord(time);
 });
+document.getElementById('resetBtn').addEventListener('click', resetTimer);
+
 document.querySelector('.deleteBtn').addEventListener('click', hadleDelete)
