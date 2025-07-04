@@ -1,12 +1,8 @@
-#1단계
-num = 0
-
-#6단계
-game_count = 1
-play_turn = "playerA"
-
-while True:
-    #3단계
+#8단계 
+#6단계까지 중복되는 코드를 찾아 함수로 만들어라. 이때, 함수 이름은 brGame으로 한다.
+def brGame(turn, count):
+    #1단계
+    num = 0
     while True:
         try:
             #2단계
@@ -20,13 +16,20 @@ while True:
 
     #4단계
     for i in range (num):
-        print("%s : %d" % (play_turn, game_count))
-        game_count += 1
+        print("%s : %d" % (turn, count))
+        count += 1
+
+    return count
+
+#6단계
+game_count = 1
+play_turn = "playerA"
+
+while True:
+    #3단계
+    game_count = brGame(play_turn, game_count)
 
     #7단계
-    #게임이 끝났을 때, 누가 이겼는지 화면에 출력하여라.
-    #playerA win!
-    #playerB win!
     if game_count > 31:
         if play_turn == "playerA":
            print("playerB win!")
