@@ -127,7 +127,7 @@ input{
 
 .record-list{
     width: 450px;
-    /*height: 250px;*/
+    height: 250px;
     background-color: white;
     margin-top: 0;
     padding: 10px;

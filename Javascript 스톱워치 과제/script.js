@@ -83,6 +83,26 @@ function hadleDelete() {
     
 }
 
+// 챌린지 1. 전체 선택 버튼 구현
+const recordList = document.querySelector('.record-list');
+const selectAllCheckbox = document.querySelector('.select-all');
+
+recordList.addEventListener('change', (e) => {
+    if(e.target.type === 'checkbox'){
+        const allCheckboxes = document.querySelectorAll('.record-item input[type="checkbox"]');
+        const checkedCheckboxes = document.querySelectorAll('.record-item input[type="checkbox"]:checked');
+
+        selectAllCheckbox.checked = allCheckboxes.length > 0 && allCheckboxes.length === checkedCheckboxes.length;
+    }
+});
+
+selectAllCheckbox.addEventListener('change', () => {
+    const itemCheckboxes = document.querySelectorAll('.record-item input[type="checkbox"]');
+    itemCheckboxes.forEach(cb => {
+        cb.checked = selectAllCheckbox.checked;
+    });
+});
+
 // 버튼에 이벤트 연결
 document.getElementById('startBtn').addEventListener('click', startTimer);
 document.getElementById('stopbtn').addEventListener('click', () => {
@@ -91,5 +111,3 @@ document.getElementById('stopbtn').addEventListener('click', () => {
   addRecord(time);
 });
 document.querySelector('.deleteBtn').addEventListener('click', hadleDelete)
-
-// 선택 삭제는 따로 버튼 만들거나 선택 후 바로 삭제해도 됨
