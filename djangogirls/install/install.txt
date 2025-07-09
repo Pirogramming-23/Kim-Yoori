@@ -1,0 +1,14 @@
+## 디렉토리 이동 ##
+cd "C:\Piro23 git 실습\Kim-Yoori\djangogirls"
+## 가상환경 생성 ##
+& "C:\Users\20160\AppData\Local\Programs\Python\Python313\python.exe" -m venv myvenv
+
+## 1. PowerShell의 보안 설정으로 인해 
+## .ps1 스크립트 실행이 막혀있을 수 있기에 실행 정책을 일시적으로 풀어야 함 !!
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+
+## 2. 가상환경 활성화
+.\myvenv\Scripts\Activate.ps1
+
+## 아래처럼 (myvenv)라는 게 앞에 붙으면 가상환경 활성화 성공 ##
+(myvenv) PS C:\Piro23 git 실습\Kim-Yoori\djangogirls>
