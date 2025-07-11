@@ -7,7 +7,7 @@ from django.http import HttpResponseRedirect
 # Create your views here.
 # review_list 페이지
 def review_list(request):
-    reviews = Review.objects.all()
+    reviews = Review.objects.all().order_by('-release_year')
     return render(request, 'reviews/review_list.html', {'reviews':reviews})
 
 # review_create 페이지
