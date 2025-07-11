@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+    {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>리뷰 작성</title>
+    <link rel="stylesheet" href="{% static 'reviews/style.css' %}">
 </head>
 <body>
     <h1> 새 리뷰 작성</h1>
 
-    <form method="post">
+    <form method="POST">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">저장</button>

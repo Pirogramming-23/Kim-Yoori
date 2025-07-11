@@ -15,8 +15,10 @@ def review_create(request):
     if request.method == 'POST' :
         form = ReviewForm(request.POST)
         if form.is_valid():
-            form.save()
-            return redirect('review_list')
+            review = form.save(commit=False)
+            review.save()
+            form.save_m2m()
+            return redirect('review_detail', pk=review.pk)
     else:
         form = ReviewForm()
     return render(request, 'reviews/review_form.html', {'form' : form})

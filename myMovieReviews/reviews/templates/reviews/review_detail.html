@@ -1,17 +1,23 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+    {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{review.tittle}}</title>
+    <link rel="stylesheet" href="{% static 'reviews/style.css' %}">
 </head>
 <body>
-    <a href="{% url 'review_list' %}">myMoviereviews</a>
+    <h1><a href="{% url 'review_list' %}">my<span>Movie</span>reviews</a></h1>
 
     <h1>{{ review.title }} ({{ review.release_year }}) </h1>
     <p><strong>감독:</strong> {{review.director}} </p>
-    <p><strong>주연:</strong> {{review.cast}} </p>
-    <p><strong>장르:</strong> {{review.genre}} </p>
+    <p><strong>주연:</strong> {{review.actors}} </p>
+    <p><strong>장르:</strong> 
+        {% for genre in review.genre.all %}
+            {{ genre.name }}{% if not forloop.last %}, {% endif %}
+        {% endfor %}
+    </p>
     <p><strong>별점:</strong> {{review.rating}} </p>
     <p><strong>러닝타임:</strong> {{review.running_time}} </p>
     <p><strong>리뷰 내용:</strong></p>

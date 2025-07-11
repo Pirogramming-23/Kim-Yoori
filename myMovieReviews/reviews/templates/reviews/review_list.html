@@ -1,19 +1,25 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+    {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Movie Reviews</title>
+    <link rel="stylesheet" href="{% static 'reviews/style.css' %}">
 </head>
 <body>
-    <h1>myMoviereviews</h1>
+    <h1>my<span>Movie</span>reviews</h1>
     <a href="{% url 'review_create' %}">Add a New review</a>
 
     <ul>
         {% for review in reviews %}
         <li>
             <a href="{% url 'review_detail' review.pk %}">
-                {{review.title}} ({{review.release_year}}) - {{review.genre}} - {{review.rating}}
+                {{review.title}} ({{review.release_year}}) - 
+                {% for g in review.genre.all %}
+                    {{g.name}}{% if not forloop.last %} /{% endif %}
+                {% endfor %}
+                - {{review.rating}}
             </a>
         </li>
         {% empty %}

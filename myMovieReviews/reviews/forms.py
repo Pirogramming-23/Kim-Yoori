@@ -4,4 +4,7 @@ from .models import Review
 class ReviewForm(forms.ModelForm):
     class Meta:
         model = Review
-        fields = ['title', 'director', 'actors', 'genre', 'rating', 'running_time', 'content']
+        fields = '__all__'
+        widgets = {
+            'genre' : forms.CheckboxSelectMultiple()
+        }
