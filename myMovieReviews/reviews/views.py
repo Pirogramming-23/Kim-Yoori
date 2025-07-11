@@ -26,7 +26,17 @@ def review_detail(request, pk):
     return render(request, 'reviews/review_detail.html', {'review' : review})
 
 def review_edit(request, pk):
-    return render(request, 'reviews/review_edit_placeholder.html', {'pk':pk})
+    review = get_object_or_404(Review, pk=pk)
+
+    if request.method == "POST":
+        form = ReviewForm(request.POST, instance=review)
+        if form.is_valid():
+            form.save()
+            return redirect('review_detail', pk=review.pk)
+    else:
+        form = ReviewForm(instance=review)
+
+    return render(request, 'reviews/review_form.html', {'form':form})
 
 def review_delete(request, pk):
     review = get_object_or_404(Review, pk=pk)
