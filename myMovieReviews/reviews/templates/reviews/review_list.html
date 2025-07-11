@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Reviews</title>
+</head>
+<body>
+    <h1>myMoviereviews</h1>
+    {# <a href="{% url 'review_create' %}">Add a New review</a> #}
+
+    <ul>
+        {% for review in reviews %}
+        <li>
+            <a href="{% url 'review_detail' review.pk %}">
+                {{review.title}} ({{review.release_year}}) - {{review.genre}} - {{review.rating}}
+            </a>
+        </li>
+        {% empty %}
+            <li>아직 작성된 리뷰가 없습니다.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
