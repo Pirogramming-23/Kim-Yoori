@@ -6,5 +6,7 @@ class ReviewForm(forms.ModelForm):
         model = Review
         fields = '__all__'
         widgets = {
-            'genre' : forms.CheckboxSelectMultiple()
+            'genre': forms.CheckboxSelectMultiple(attrs={'class': 'checkbox-group'}),
+            'rating': forms.Select(attrs={'class': 'short-select'}),
+            'running_time': forms.NumberInput(attrs={'class': 'short-input'}),
         }

@@ -4,27 +4,31 @@
     {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{review.tittle}}</title>
+    <title>review detail</title>
     <link rel="stylesheet" href="{% static 'reviews/style.css' %}">
 </head>
 <body>
     <h1><a href="{% url 'review_list' %}">my<span>Movie</span>reviews</a></h1>
 
-    <h1>{{ review.title }} ({{ review.release_year }}) </h1>
-    <p><strong>감독:</strong> {{review.director}} </p>
-    <p><strong>주연:</strong> {{review.actors}} </p>
-    <p><strong>장르:</strong> 
-        {% for genre in review.genre.all %}
-            {{ genre.name }}{% if not forloop.last %}, {% endif %}
-        {% endfor %}
-    </p>
-    <p><strong>별점:</strong> {{review.rating}} </p>
-    <p><strong>러닝타임:</strong> {{ formatted_runtime }} </p>
-    <p><strong>리뷰 내용:</strong></p>
-    <p>{{ review.content }}</p>
+    <div class="detail-container">
+        <h1>{{ review.title }} ({{ review.release_year }}) </h1>
+        <p><strong>감독:</strong> {{review.director}} </p>
+        <p><strong>주연:</strong> {{review.actors}} </p>
+        <p><strong>장르:</strong> 
+            {% for genre in review.genre.all %}
+                {{ genre.name }}{% if not forloop.last %}, {% endif %}
+            {% endfor %}
+        </p>
+        <p><strong>별점:</strong> {{review.rating}} </p>
+        <p><strong>러닝타임:</strong> {{ formatted_runtime }} </p>
+        <p><strong>리뷰 내용:</strong></p>
+        <p>{{ review.content }}</p>
 
-    <a href="{% url 'review_list' %}"> 리뷰 목록으로 </a>
-    <a href="{% url 'review_edit' review.pk %}">수정</a>
-    <a href="{% url 'review_delete' review.pk %}">삭제</a>
+    <div class="detail-buttons">
+        <a href="{% url 'review_list' %}"> 리뷰 목록으로 </a>
+        <a href="{% url 'review_edit' review.pk %}">수정</a>
+        <a href="{% url 'review_delete' review.pk %}">삭제</a>
+    </div>
+</div>
 </body>
 </html>

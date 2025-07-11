@@ -18,7 +18,7 @@ def review_create(request):
             review = form.save(commit=False)
             review.save()
             form.save_m2m()
-            return redirect('review_detail', pk=review.pk)
+            return redirect('review_list')
     else:
         form = ReviewForm()
     return render(request, 'reviews/review_form.html', {'form' : form})
