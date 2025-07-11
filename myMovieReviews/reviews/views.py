@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Review
 from .forms import ReviewForm
+from django.views.decorators.http import require_POST
+from django.http import HttpResponseRedirect
 
 # Create your views here.
 # review_list 페이지
@@ -22,3 +24,13 @@ def review_create(request):
 def review_detail(request, pk):
     review = get_object_or_404(Review, pk=pk)
     return render(request, 'reviews/review_detail.html', {'review' : review})
+
+def review_edit(request, pk):
+    return render(request, 'reviews/review_edit_placeholder.html', {'pk':pk})
+
+def review_delete(request, pk):
+    review = get_object_or_404(Review, pk=pk)
+    if request.method == 'POST':
+        review.delete()
+        return redirect('review_list')
+    return render(request, 'reviews/review_confirm_delete.html', {'review' : review})
