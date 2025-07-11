@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Review
 from .forms import ReviewForm
 
@@ -18,3 +18,7 @@ def review_create(request):
     else:
         form = ReviewForm()
     return render(request, 'reviews/review_form.html', {'form' : form})
+
+def review_detail(request, pk):
+    review = get_object_or_404(Review, pk=pk)
+    return render(request, 'reviews/review_detail.html', {'review' : review})

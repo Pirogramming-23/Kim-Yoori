@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{review.tittle}}</title>
+</head>
+<body>
+    <h1>{{ review.title }} ({{ review.release_year }}) </h1>
+    <p><strong>감독:</strong> {{review.director}} </p>
+    <p><strong>주연:</strong> {{review.cast}} </p>
+    <p><strong>장르:</strong> {{review.genre}} </p>
+    <p><strong>별점:</strong> {{review.rating}} </p>
+    <p><strong>러닝타임:</strong> {{review.running_time}} </p>
+    <p><strong>리뷰:</strong> {{review.review_content}} </p>
+
+    <a href="{% url 'review_list' %}"> 리뷰 목록으로 </a>
+</body>
+</html>
