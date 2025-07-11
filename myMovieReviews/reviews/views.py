@@ -25,7 +25,15 @@ def review_create(request):
 
 def review_detail(request, pk):
     review = get_object_or_404(Review, pk=pk)
-    return render(request, 'reviews/review_detail.html', {'review' : review})
+
+    hours = review.running_time // 60
+    minutes = review.running_time % 60
+    formatted_runtime = f"{hours}시간 {minutes}분"
+
+    return render(request, 'reviews/review_detail.html', {
+        'review' : review,
+        'formatted_runtime' : formatted_runtime,
+    })
 
 def review_edit(request, pk):
     review = get_object_or_404(Review, pk=pk)
