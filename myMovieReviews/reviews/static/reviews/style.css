@@ -1,0 +1,287 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #1b1b1b;
+    color: #ffffff;
+    line-height: 1.6;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px;
+}
+
+.header a {
+    font-size: 0.95rem;
+    color: #fffefe;
+    font-weight: bold;
+}
+
+h1{
+    font-size: 2rem;
+    margin: 20px;
+}
+
+span{
+    color: rgb(255, 47, 116);
+}
+
+h1 a{
+    text-decoration: none;
+    color: inherit;
+}
+
+a{
+    text-decoration: none;
+    color: inherit;
+}
+
+
+.container{
+    width: 100%;
+    padding: 20px 60px ;
+}
+
+ul{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    list-style: none;
+    gap: 20px;
+    padding: 0;
+    margin: 20px;
+}
+
+ul li {
+    width: 400px;
+    background-color: white;
+    padding: 16px;
+    margin-bottom: 12px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+ul li:hover{
+    transform: translateY(-4px);
+    box-shadow: 0 6px 10px rgba(0,0,0,0.25);
+}
+
+ul li a {
+    color: #222;
+}
+
+ul li a strong {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.detail-container {
+    color: #222;
+    max-width: 720px;
+    margin: 40px auto;
+    padding: 32px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    line-height: 1.8;
+}
+
+.detail-container h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+}
+
+.detail-container p {
+    padding: 0 20px;
+    margin: 8px 0;
+    font-size: 1rem;
+}
+
+.detail-container p strong {
+    display: inline;
+    font-weight: bold;
+    color: #555;
+}
+
+.detail-buttons {
+    margin-top: 32px;
+    display: flex;
+    gap: 12px;
+    padding: 0 20px;
+}
+
+.detail-buttons a {
+    padding: 8px 16px;
+    background-color: #f13c69;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: background-color 0.3s;
+}
+
+.detail-buttons a:hover {
+    background-color: #c72c53;
+}
+
+.form-container {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+.form-container h1 {
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+    color: #333;
+    text-align: center;
+}
+
+form p {
+    margin-bottom: 16px;
+}
+
+form label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: bold;
+    color: #444;
+}
+
+form input[type="text"],
+form input[type="number"],
+form textarea,
+form select {
+    width: 100%;
+    padding: 10px;
+    font-size: 0.95rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background-color: #fafafa;
+}
+
+form textarea {
+    resize: vertical;
+    min-height: 100px;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 0.95rem;
+}
+
+.form-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 24px;
+}
+
+.form-buttons button,
+.form-buttons a {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    background-color: rgb(251, 26, 101);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+}
+
+.form-buttons a {
+    background-color: #aaa;
+}
+
+.form-buttons button:hover {
+    background-color: rgb(220, 20, 85);
+}
+
+.form-buttons a:hover {
+    background-color: #888;
+}
+
+/* 장르 체크박스 영역 가로 정렬 */
+form .checkbox-group {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px 12px;
+    margin-bottom: 16px;
+}
+
+.checkbox-group label {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-weight: normal;
+    font-size: 0.95rem;
+    color: #333;
+    white-space: nowrap;
+}
+
+input[type="number"],
+select {
+    width: 140px !important;
+}
+
+.delete-container {
+    max-width: 500px;
+    margin: 60px auto;
+    padding: 40px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    color: #222;
+}
+
+.delete-container h2 {
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.delete-container p {
+    font-size: 1rem;
+    margin-bottom: 28px;
+}
+
+.delete-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+}
+
+.delete-buttons button,
+.delete-buttons a {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+    background-color: rgb(251, 26, 101);
+}
+
+.delete-buttons a {
+    background-color: #aaa;
+}
+
+.delete-buttons button:hover {
+    background-color: rgb(220, 20, 85);
+}
+
+.delete-buttons a:hover {
+    background-color: #888;
+}
+

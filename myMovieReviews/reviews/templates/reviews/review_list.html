@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Reviews</title>
+    <link rel="stylesheet" href="{% static 'reviews/style.css' %}">
+</head>
+<body>
+    <div class="header">
+         <h1>my<span>Movie</span>reviews</h1>
+        <a href="{% url 'review_create' %}">Add a New review</a>
+    </div>
+   
+    <div class="container">
+    <ul>
+        {% for review in reviews %}
+        <li>
+            <a href="{% url 'review_detail' review.pk %}">
+                <strong>{{review.title}}</strong><br>
+                개봉년도: {{review.release_year}}<br>
+                장르:
+                {% for g in review.genre.all %}
+                    {{g.name}}{% if not forloop.last %} /{% endif %}
+                {% endfor %}<br>
+                별점: {{review.rating}}
+            </a>
+        </li>
+        {% empty %}
+            <li>아직 작성된 리뷰가 없습니다.</li>
+        {% endfor %}
+    </ul>
+    </div>
+</body>
+</html>

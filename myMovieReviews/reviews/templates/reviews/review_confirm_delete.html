@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>리뷰 삭제</title>
+    <link rel="stylesheet" href="{% static 'reviews/style.css' %}">
+</head>
+<body>
+    <h1><a href="{% url 'review_list' %}">my<span>Movie</span>reviews</a></h1>
+
+    <div class="delete-container">
+        <h2>정말 삭제하시겠습니까?</h2>
+        <p>"<strong>{{ review.title }}</strong>" 리뷰를 삭제하시려면 아래 확인 버튼을 눌러주세요.</p>
+
+        <form method="post">
+            {% csrf_token %}
+            <div class="delete-buttons">
+                <button type="submit">삭제</button>
+                <a href="{% url 'review_detail' review.pk %}">취소</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
