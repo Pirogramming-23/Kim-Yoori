@@ -13,13 +13,14 @@
             })
             */
            //Asynchronous
-           function callbackme(){
-            console.log('response end')
-           }
-           fetch('html').then(callbackme);
+           fetch('html').then(function(response){
+            console.log(response.status);
+            if(response.status == '404'){
+                alert('Not Found')
+            }
+           });
            console.log(1);
            console.log(2);
-           /*git status 확인 용 주석*/
         ">
     </body>
 </html>
