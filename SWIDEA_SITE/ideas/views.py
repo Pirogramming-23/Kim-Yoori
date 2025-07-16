@@ -130,11 +130,24 @@ def devtool_create(request):
         form = DevToolForm()
     return render(request, 'ideas/devtool_form.html', {'form' : form})
 
-##임시로##
 def devtool_detail(request, tool_id):
     devtool = get_object_or_404(DevTool, id=tool_id)
     ideas = Idea.objects.filter(devtool=devtool)
     return render(request, 'ideas/devtool_detail.html',{
         'devtool' : devtool,
         'ideas' : ideas,
+    })
+
+def idea_by_tag(request, tag_name):
+    ideas = Idea.objects.filter(tags__name=tag_name).order_by('-created_at')
+
+    star_dict = {}
+    if request.user.is_authenticated:
+        starred = IdeaStar.objects.filter(user=request.user).values_list('idea_id', flat=True)
+        star_dict = {idea.id: True for idea in ideas if idea.id in starred}
+
+    return render(request, 'ideas/idea_list.html', {
+        'ideas': ideas,
+        'star_dict': star_dict,
+        'filter_tag': tag_name,
     })

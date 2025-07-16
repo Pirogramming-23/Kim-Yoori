@@ -35,6 +35,14 @@
     {% endif %}
 </form>
 {% endif %}
-
+{% if idea.tags.all %}
+<p>
+    <strong>태그:</strong>
+    {% for tag in idea.tags.all %}
+        <a href="{% url 'ideas:idea_by_tag' tag.name %}">#{{ tag.name }}</a>
+        {% if not forloop.last %}, {% endif %}
+    {% endfor %}
+</p>
+{% endif %}
 
 {% endblock %}

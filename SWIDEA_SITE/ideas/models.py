@@ -10,6 +10,12 @@ class DevTool(models.Model):
 
     def __str__(self):
         return self.name
+   
+class Tag(models.Model):
+    name = models.CharField(max_length=20, unique=True)
+
+    def __str__(self):
+        return self.name
 
 #아이디어 게시물 모델
 class Idea(models.Model):
@@ -23,6 +29,7 @@ class Idea(models.Model):
     #작성시간, 수정시간
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    tags = models.ManyToManyField(Tag, blank=True)
 
 #찜 기능 모델
 class IdeaStar(models.Model):
@@ -31,3 +38,4 @@ class IdeaStar(models.Model):
 
     class Meta:
         unique_together = ('user', 'idea')
+

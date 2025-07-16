@@ -14,4 +14,5 @@ urlpatterns = [
     path('devtools/', views.devtool_list, name='devtool_list'),
     path('devtools/create/', views.devtool_create, name='devtool_create'),
     path('devtools/<int:tool_id>/', views.devtool_detail, name='devtool_detail'),
+    path('tags/<str:tag_name>/', views.idea_by_tag, name='idea_by_tag'),
 ]
