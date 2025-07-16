@@ -1,0 +1,18 @@
+{% extends 'ideas/base.html' %}
+
+{% block title %}{{ idea.title }}{% endblock %}
+
+{% block content %}
+<h1>{{ idea.title }}</h1>
+
+<img src="{{ idea.image.url }}" width="300"><br>
+
+<p><strong>관심도: </strong> {{ idea.interest }}</p>
+<p><strong>내용: </strong> {{ idea.content }}</p>
+<p><strong>개발툴:</strong>
+    <a href="#">{{ idea.devtool.name }}</a>
+</p>
+
+<p><strong>등록일:</strong> {{ idea.created_at|date:"Y-m-d H:i" }}</p>
+
+{% endblock %}

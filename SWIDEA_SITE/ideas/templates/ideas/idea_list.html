@@ -16,7 +16,7 @@
 {% for idea in ideas %}
 <div style="margin-bottom: 20px;">
     <!--제목 클릭하면 다른 페이지로 연결-->
-    <a href="#">{{ idea.title }}</a><br>
+    <a href="{% url 'ideas:idea_detail' idea.id %}">{{ idea.title }}</a><br>
     <!--찜 버튼-->
     {% if user.is_authenticated %}
     <form method="POST" action="{% url 'ideas:toggle_star' idea.id %}">
@@ -41,7 +41,7 @@
         {% endif %}
     </p>
 
-    
+
     <p>개발툴: {{ idea.devtool.name }}</p>
     
 </div>

@@ -71,3 +71,7 @@ def idea_create(request):
         form = IdeaForm()
     
     return render(request, 'ideas/idea_form.html', {'form':form})
+
+def idea_detail(request, idea_id):
+    idea = get_object_or_404(Idea, id=idea_id)
+    return render(request, 'ideas/idea_detail.html', {'idea':idea})

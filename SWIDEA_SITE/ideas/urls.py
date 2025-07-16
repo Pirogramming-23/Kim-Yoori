@@ -8,4 +8,5 @@ urlpatterns = [
     path('star/<int:idea_id>/', views.toggle_star, name='toggle_star'),
     path('interest/<int:idea_id>/', views.adjust_interest, name='adjust_interest'),
     path('create/', views.idea_create, name='idea_create'),
+    path('<int:idea_id>/', views.idea_detail, name='idea_detail'),
 ]
