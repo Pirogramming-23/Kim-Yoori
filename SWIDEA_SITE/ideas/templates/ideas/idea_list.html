@@ -5,14 +5,24 @@
 {% block content %}
 <h1>아이디어 목록</h1>
 
+<!-- 사용자가 클릭하면 GET 방식으로 URL에 ?sort=~~ 파라미터가 붙음 -->
+<p>
+    <a href="?sort=latest">최신순</a>
+    <a href="?sort=name">이름순</a>
+    <a href="?sort=interest">관심도순</a>
+    <a href="?sort=oldest">등록순</a>
+</p>
+
 {% for idea in ideas %}
 <div style="margin-bottom: 20px;">
-    <a href="#">{{ idea.title }}</a>
+    <!--제목 클릭하면 다른 페이지로 연결-->
+    <a href="#">{{ idea.title }}</a><br>
+    <!--썸네일 이미지 추가-->
     <img src="{{ idea.image.url }}" width="200"><br>
     <p>관심도: {{ idea.interest }}</p>
     <p>개발툴: {{ idea.devtool.name }}</p>
 </div>
 {% empty %}
-<p>등록된 아이디어가 없습니다.</p>
+    <p>등록된 아이디어가 없습니다.</p>
 {% endfor %}
 {% endblock %}
