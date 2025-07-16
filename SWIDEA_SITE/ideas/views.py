@@ -3,7 +3,8 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import Count
 from .models import Idea, IdeaStar, DevTool
 from django.views.decorators.http import require_POST
-from .forms import IdeaForm
+from .forms import IdeaForm, DevToolForm
+from django.http import HttpResponse
 
 # 아이디어 리스트 출력
 def idea_list(request):
@@ -117,3 +118,18 @@ def devtool_list(request):
     return render(request, 'ideas/devtool_list.html', {
         'devtools' : devtools
     })
+
+@login_required
+def devtool_create(request):
+    if request.method == 'POST':
+        form = DevToolForm(request.POST)
+        if form.is_valid():
+            devtool = form.save()
+            return redirect('ideas:devtool_detail', tool_id=devtool.id)
+    else:
+        form = DevToolForm()
+    return render(request, 'ideas/devtool_form.html', {'form' : form})
+
+##임시로##
+def devtool_detail(request, tool_id):
+    return HttpResponse(f"DevTool ID: {tool_id} - 디테일 페이지는 곧 구현 예정.")

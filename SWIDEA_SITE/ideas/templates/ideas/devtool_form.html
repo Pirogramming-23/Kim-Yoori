@@ -1,0 +1,13 @@
+{% extends 'ideas/base.html' %}
+
+{% block title %}개발툴 등록{% endblock %}
+
+{% block content %}
+<h1>개발툴 등록</h1>
+
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">등록</button>
+</form>
+{% endblock %}
