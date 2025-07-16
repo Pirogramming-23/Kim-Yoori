@@ -75,3 +75,28 @@ def idea_create(request):
 def idea_detail(request, idea_id):
     idea = get_object_or_404(Idea, id=idea_id)
     return render(request, 'ideas/idea_detail.html', {'idea':idea})
+
+#삭제
+@login_required
+def idea_delete(request, idea_id):
+    idea = get_object_or_404(Idea, id=idea_id)
+
+    if request.method == 'POST':
+        idea.delete()
+        return redirect('ideas:idea_list')
+    return render(request, 'ideas/idea_confirm_delete.html', {'idea':idea})
+
+#수정
+@login_required
+def idea_update(request, idea_id):
+    idea = get_object_or_404(Idea, id=idea_id)
+
+    if request.method == 'POST':
+        form = IdeaForm(request.POST, request.FILES, instance=idea)
+        if form.is_valid():
+            form.save()
+            return redirect('ideas:idea_detail', idea.id)
+    else:
+        form = IdeaForm(instance=idea)
+
+    return render(request, 'ideas/idea_form.html', {'form' : form})

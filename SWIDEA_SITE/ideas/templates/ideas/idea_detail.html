@@ -15,4 +15,13 @@
 
 <p><strong>등록일:</strong> {{ idea.created_at|date:"Y-m-d H:i" }}</p>
 
+<!--버튼 추가-->
+<p>
+    <a href="{% url 'ideas:idea_list' %}">목록</a>
+    <a href="{% url 'ideas:idea_update' idea.id %}">수정</a>
+    <form method="POST" action="{% url 'ideas:idea_delete' idea.id %}" style="display: inline;">
+        {% csrf_token %}
+        <a href="{% url 'ideas:idea_delete' idea.id %}">삭제</a>
+    </form>
+</p>
 {% endblock %}
