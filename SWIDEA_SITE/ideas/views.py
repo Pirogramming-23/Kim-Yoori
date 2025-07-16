@@ -105,6 +105,7 @@ def idea_update(request, idea_id):
         if form.is_valid():
             form.save()
             return redirect('ideas:idea_detail', idea.id)
+    # 기존 정보가 폼에 채워짐 pre-fill
     else:
         form = IdeaForm(instance=idea)
 
