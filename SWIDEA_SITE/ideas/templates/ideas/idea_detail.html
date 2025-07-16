@@ -24,4 +24,17 @@
         <a href="{% url 'ideas:idea_delete' idea.id %}">삭제</a>
     </form>
 </p>
+
+{% if user.is_authenticated %}
+<form method="POST" action="{% url 'ideas:toggle_star' idea.id %}">
+    {% csrf_token %}
+    {% if is_starred %}
+    <button type="submit">찜 취소</button>
+    {% else %}
+    <button type="submit">찜하기</button>
+    {% endif %}
+</form>
+{% endif %}
+
+
 {% endblock %}

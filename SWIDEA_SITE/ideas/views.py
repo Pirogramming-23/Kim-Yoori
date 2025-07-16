@@ -74,7 +74,15 @@ def idea_create(request):
 
 def idea_detail(request, idea_id):
     idea = get_object_or_404(Idea, id=idea_id)
-    return render(request, 'ideas/idea_detail.html', {'idea':idea})
+    
+    is_starred = False
+    if request.user.is_authenticated:
+        is_starred = IdeaStar.objects.filter(user=request.user, idea=idea).exists()
+    
+    return render(request, 'ideas/idea_detail.html', {
+        'idea':idea,
+        'is_starred': is_starred
+    })
 
 #삭제
 @login_required
@@ -84,6 +92,7 @@ def idea_delete(request, idea_id):
     if request.method == 'POST':
         idea.delete()
         return redirect('ideas:idea_list')
+    
     return render(request, 'ideas/idea_confirm_delete.html', {'idea':idea})
 
 #수정
