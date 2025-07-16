@@ -132,4 +132,9 @@ def devtool_create(request):
 
 ##임시로##
 def devtool_detail(request, tool_id):
-    return HttpResponse(f"DevTool ID: {tool_id} - 디테일 페이지는 곧 구현 예정.")
+    devtool = get_object_or_404(DevTool, id=tool_id)
+    ideas = Idea.objects.filter(devtool=devtool)
+    return render(request, 'ideas/devtool_detail.html',{
+        'devtool' : devtool,
+        'ideas' : ideas,
+    })

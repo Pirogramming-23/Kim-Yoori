@@ -1,0 +1,25 @@
+{% extends 'ideas/base.html' %}
+
+{% block title %}{{ devtool.name }}개발툴 상세{% endblock %}
+
+{% block content %}
+<h1>{{ devtool.name }}
+
+{% if ideas %}
+    <ul>
+    {% for idea in ideas %}
+    <li>
+        <a href="{% url 'ideas:idea_detail' idea.id %}">
+            <img src="{{ idea.image.url }}" width="100"><br>
+            {{ idea.title }}
+        </a>
+    </li>
+    {% endfor %}
+    </ul>
+    {% else %}
+    <p>아직 이 개발툴을 사용하는 아이디어가 없습니다.</p>
+    {% endif %}
+
+    <a href="{% url 'ideas:devtool_list' %}">개발툴 목록으로</a>
+</h1>
+{% endblock %}
