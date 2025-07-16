@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.db.models import Count
-from .models import Idea, IdeaStar
+from .models import Idea, IdeaStar, DevTool
 from django.views.decorators.http import require_POST
 from .forms import IdeaForm
 
@@ -110,3 +110,10 @@ def idea_update(request, idea_id):
         form = IdeaForm(instance=idea)
 
     return render(request, 'ideas/idea_form.html', {'form' : form})
+
+# 개발툴 리스트 페이지
+def devtool_list(request):
+    devtools = DevTool.objects.all()
+    return render(request, 'ideas/devtool_list.html', {
+        'devtools' : devtools
+    })
