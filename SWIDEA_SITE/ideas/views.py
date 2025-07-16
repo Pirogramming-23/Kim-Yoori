@@ -157,7 +157,7 @@ def devtool_update(request, tool_id):
         if form.is_valid():
             form.save()
             return redirect('ideas:devtool_detail', tool_id=devtool.id)
-    else:
+    else: #pre-fill 구현
         form = DevToolForm(instance=devtool)
 
     return render(request, 'ideas/devtool_form.html', {'form': form})
