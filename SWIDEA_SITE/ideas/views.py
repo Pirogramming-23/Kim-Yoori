@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
-from django.db.models import Count
+from django.db.models import Count, Q
 from .models import Idea, IdeaStar, DevTool
 from django.views.decorators.http import require_POST
 from .forms import IdeaForm, DevToolForm
@@ -11,15 +11,23 @@ from django.core.paginator import Paginator
 def idea_list(request):
     #정렬 기준 받기
     sort = request.GET.get('sort', 'latest')
+    query = request.GET.get('q', '')
+
+    idea_queryset = Idea.objects.all()
+
+    if query:
+        idea_queryset = idea_queryset.filter(
+            Q(title__icontains=query) | Q(devtool__name__icontains=query)
+        )
 
     if sort == 'name':
-        idea_queryset = Idea.objects.all().order_by('title')
+        idea_queryset = idea_queryset.order_by('title')
     elif sort == 'stars':
-        idea_queryset = Idea.objects.annotate(star_count=Count('ideastar')).order_by('-star_count')
+        idea_queryset = idea_queryset.annotate(star_count=Count('ideastar')).order_by('-star_count')
     elif sort == 'oldest':
-        idea_queryset = Idea.objects.all().order_by('created_at')
+        idea_queryset = idea_queryset.all().order_by('created_at')
     else:
-        idea_queryset = Idea.objects.all().order_by('-created_at')
+        idea_queryset = idea_queryset.all().order_by('-created_at')
     
     #페이지네이션
     paginator = Paginator(idea_queryset, 4)
@@ -35,7 +43,8 @@ def idea_list(request):
     return render(request, 'ideas/idea_list.html', {
         'ideas':page_obj,
         'page_obj': page_obj,
-        'star_dict':star_dict
+        'star_dict':star_dict,
+        'query': query,
     })
 
 #로그인하지 않은 사용자가 이 view에 접근하면 자동으로 로그인 페이지로 이동하게 만드는 문법

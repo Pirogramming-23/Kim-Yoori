@@ -5,6 +5,15 @@
 {% block content %}
 <h1>아이디어 목록</h1>
 
+<!--검색창 추가-->
+<form method="GET" action=".">
+    <input type="text" name="q" placeholder="검색어 입력" value="{{ request.GET.q }}">
+    <button type="submit">검색</button>
+    {% if query %}
+        <a href="{% url 'ideas:idea_list' %}">검색 초기화</a>
+    {% endif %}
+</form>
+
 <!-- 사용자가 클릭하면 GET 방식으로 URL에 ?sort=~~ 파라미터가 붙음 -->
 <p>
     <a href="?sort=stars">찜하기순</a>
