@@ -6,6 +6,7 @@ from django.views.decorators.http import require_POST
 from .forms import IdeaForm, DevToolForm
 from django.http import JsonResponse
 from django.core.paginator import Paginator
+from django.template.loader import render_to_string
 
 # 아이디어 리스트 출력
 def idea_list(request):
@@ -192,3 +193,15 @@ def idea_by_tag(request, tag_name):
         'star_dict': star_dict,
         'filter_tag': tag_name,
     })
+
+def ajax_search(request):
+    query = request.GET.get('q', '')
+    ideas = Idea.objects.filter(title__icontains=query).order_by('-created_at')
+
+    html = render_to_string('ideas/partials/idea_list.html', {
+        'ideas' : ideas,
+        'star_dict' : {idea.id: True for idea in ideas if request.user.is_authenticated and IdeaStar.objects.filter(user=request.user, idea=idea).exists()},
+        'user': request.user,
+    })
+
+    return JsonResponse({'html':html})
