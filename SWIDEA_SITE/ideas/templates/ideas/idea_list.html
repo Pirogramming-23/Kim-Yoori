@@ -18,26 +18,21 @@
     <!--제목 클릭하면 다른 페이지로 연결-->
     <a href="{% url 'ideas:idea_detail' idea.id %}">{{ idea.title }}</a><br>
     <!--찜 버튼-->
-    {% if user.is_authenticated %}
-    <form method="POST" action="{% url 'ideas:toggle_star' idea.id %}">
-        {% csrf_token %}
+    <button class="star-toggle-btn" data-idea-id="{{ idea.id }}">
         {% if idea.id in star_dict %}
-            <button type="submit">찜 취소</button>
+            ⭐ 찜취소
         {% else %}
-            <button type="submit">찜하기</button>
+            ☆ 찜하기
         {% endif %}
-    </form>
-    {% endif %}
+    </button>
     <!--썸네일 이미지 추가-->
     <img src="{{ idea.image.url }}" width="200"><br>
 
-    <p>관심도: {{ idea.interest }}
+    <p>
+        관심도: <span class="interest-count" data-idea-id="{{ idea.id }}">{{ idea.interest }}</span>
         {% if user.is_authenticated %}
-        <form method="POST" action="{% url 'ideas:adjust_interest' idea.id %}" style="display: inline;">
-            {% csrf_token %}
-            <button type="submit" name="action" value="increase">+</button>
-            <button type="submit" name="action" value="decrease">-</button>
-        </form>
+            <button class="interest-btn" data-idea-id="{{ idea.id }}" data-action="increase">+</button>
+            <button class="interest-btn" data-idea-id="{{ idea.id }}" data-action="decrease">-</button>
         {% endif %}
     </p>
 
@@ -48,4 +43,60 @@
 {% empty %}
     <p>등록된 아이디어가 없습니다.</p>
 {% endfor %}
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const starButtons = document.querySelectorAll('.star-toggle-btn');
+
+        /*찜 버튼*/
+        starButtons.forEach(button => {
+            button.addEventListener('click', function(){
+                const ideaId = this.dataset.ideaId;
+
+                fetch(`/star/${ideaId}/`, {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRFToken' : '{{ csrf_token }}',
+                    },
+                })
+                .then(response => {
+                    if(response.ok){
+                        this.textContent = this.textContent.includes('☆') ? '⭐ 찜취소' : '☆ 찜하기';
+                    } else {
+                        alert('실패했어요!');
+                    }
+                });
+            });
+        });
+
+        //관심도 Ajax 처리//
+            const interestButtons = document.querySelectorAll('.interest-btn');
+            interestButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const ideaId = this.dataset.ideaId;
+                    const action = this.dataset.action;
+
+                    fetch(`/interest/${ideaId}/`, {
+                        method: 'POST',
+                        headers: {
+                            'X-CSRFToken': '{{ csrf_token }}',
+                            'Content-Type': 'application/x-www-form-urlencoded',
+                        },
+                        body: `action=${action}`
+                    })
+                    .then(response=> response.json())
+                    .then(data => {
+                        if (data.success) {
+                            const countSpan = document.querySelector(`.interest-count[data-idea-id="${ideaId}"]`);
+                            countSpan.textContent = data.interest;
+                        } else{
+                            alert('관심도 변경 실패');
+                        }
+                    });
+                });
+            });
+        });    
+
+</script>
+
 {% endblock %}

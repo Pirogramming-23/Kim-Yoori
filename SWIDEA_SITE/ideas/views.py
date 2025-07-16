@@ -4,7 +4,7 @@ from django.db.models import Count
 from .models import Idea, IdeaStar, DevTool
 from django.views.decorators.http import require_POST
 from .forms import IdeaForm, DevToolForm
-from django.http import HttpResponse
+from django.http import JsonResponse
 
 # 아이디어 리스트 출력
 def idea_list(request):
@@ -58,7 +58,7 @@ def adjust_interest(request, idea_id):
         idea.interest -= 1
     
     idea.save()
-    return redirect('ideas:idea_list')
+    return JsonResponse({'success': True, 'interest': idea.interest})
 
 #아이디어 등록
 @login_required
