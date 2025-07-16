@@ -44,6 +44,21 @@
     <p>등록된 아이디어가 없습니다.</p>
 {% endfor %}
 
+<!--페이지네이션 링크-->
+<div>
+    <span>
+        {% if page_obj.has_previous %}
+            <a href="?page={{ page_obj.previous_page_number }}{% if request.GET.sort %}&sort={{ request.GET.sort }}{% endif %}">이전</a>
+        {% endif %}
+
+        페이지 {{ page_obj.number }} / {{ page_obj.paginator.num_pages }}
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}{% if request.GET.sort %}&sort={{ request.GET.sort }}{% endif %}">다음</a>
+        {% endif %}
+    </span>
+</div>
+
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         const starButtons = document.querySelectorAll('.star-toggle-btn');

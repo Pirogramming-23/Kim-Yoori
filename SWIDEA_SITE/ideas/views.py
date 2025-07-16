@@ -5,6 +5,7 @@ from .models import Idea, IdeaStar, DevTool
 from django.views.decorators.http import require_POST
 from .forms import IdeaForm, DevToolForm
 from django.http import JsonResponse
+from django.core.paginator import Paginator
 
 # 아이디어 리스트 출력
 def idea_list(request):
@@ -12,22 +13,28 @@ def idea_list(request):
     sort = request.GET.get('sort', 'latest')
 
     if sort == 'name':
-        ideas = Idea.objects.all().order_by('title')
+        idea_queryset = Idea.objects.all().order_by('title')
     elif sort == 'stars':
-        ideas = Idea.objects.annotate(star_count=Count('ideastar')).order_by('-star_count')
+        idea_queryset = Idea.objects.annotate(star_count=Count('ideastar')).order_by('-star_count')
     elif sort == 'oldest':
-        ideas = Idea.objects.all().order_by('created_at')
+        idea_queryset = Idea.objects.all().order_by('created_at')
     else:
-        ideas = Idea.objects.all().order_by('-created_at')
+        idea_queryset = Idea.objects.all().order_by('-created_at')
+    
+    #페이지네이션
+    paginator = Paginator(idea_queryset, 4)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
     
     #찜한 상태를 딕셔너리 형태로 전달
     star_dict = {}
     if request.user.is_authenticated:
         starred = IdeaStar.objects.filter(user=request.user).values_list('idea_id', flat=True)
-        star_dict = {idea.id: True for idea in ideas if idea.id in starred}
+        star_dict = {idea.id: True for idea in page_obj if idea.id in starred}
 
     return render(request, 'ideas/idea_list.html', {
-        'ideas':ideas,
+        'ideas':page_obj,
+        'page_obj': page_obj,
         'star_dict':star_dict
     })
 
