@@ -67,7 +67,7 @@ def idea_create(request):
         form = IdeaForm(request.POST, request.FILES)
         if form.is_valid():
             idea = form.save()
-            return redirect('ideas:idea_list')
+            return redirect('ideas:idea_detail', idea_id=idea.id)
     else:
         form = IdeaForm()
     
