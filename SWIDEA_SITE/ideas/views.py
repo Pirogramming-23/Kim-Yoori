@@ -138,6 +138,31 @@ def devtool_detail(request, tool_id):
         'ideas' : ideas,
     })
 
+@login_required
+def devtool_delete(request, tool_id):
+    devtool = get_object_or_404(DevTool, id=tool_id)
+
+    if request.method == 'POST':
+        devtool.delete()
+        return redirect('ideas:devtool_list')
+
+    return render(request, 'ideas/devtool_confirm_delete.html', {'devtool': devtool})
+
+@login_required
+def devtool_update(request, tool_id):
+    devtool = get_object_or_404(DevTool, id=tool_id)
+
+    if request.method == 'POST':
+        form = DevToolForm(request.POST, instance=devtool)
+        if form.is_valid():
+            form.save()
+            return redirect('ideas:devtool_detail', tool_id=devtool.id)
+    else:
+        form = DevToolForm(instance=devtool)
+
+    return render(request, 'ideas/devtool_form.html', {'form': form})
+
+
 def idea_by_tag(request, tag_name):
     ideas = Idea.objects.filter(tags__name=tag_name).order_by('-created_at')
 

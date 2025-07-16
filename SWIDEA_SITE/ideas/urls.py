@@ -14,5 +14,7 @@ urlpatterns = [
     path('devtools/', views.devtool_list, name='devtool_list'),
     path('devtools/create/', views.devtool_create, name='devtool_create'),
     path('devtools/<int:tool_id>/', views.devtool_detail, name='devtool_detail'),
+    path('devtools/<int:tool_id>/update/', views.devtool_update, name='devtool_update'),
+    path('devtools/<int:tool_id>/delete/', views.devtool_delete, name='devtool_delete'),
     path('tags/<str:tag_name>/', views.idea_by_tag, name='idea_by_tag'),
 ]
