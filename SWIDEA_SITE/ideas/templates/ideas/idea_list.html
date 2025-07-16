@@ -1,3 +1,8 @@
+{% extends 'ideas/base.html' %}
+
+{% block title %}아이디어 목록{% endblock %}
+
+{% block content %}
 <h1>아이디어 목록</h1>
 
 {% for idea in ideas %}
@@ -10,3 +15,4 @@
 {% empty %}
 <p>등록된 아이디어가 없습니다.</p>
 {% endfor %}
+{% endblock %}

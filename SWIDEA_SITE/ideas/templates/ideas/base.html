@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}아이디어 사이트{% endblock %}</title>
+    <style>
+        body{padding: 20px;}
+        nav{margin-bottom: 30px;}
+        a{text-decoration: none; color: navy;}
+        a:hover{cursor: pointer;}
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="{% url 'ideas:idea_list' %}">아이디어 목록</a>
+        <a href="#">아이디어 등록</a>
+        <a href="#">개발툴 목록</a>
+    </nav>
+    <hr>
+
+    {% block content %}
+    {% endblock %}
+</body>
+</html>
