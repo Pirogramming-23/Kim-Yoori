@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import Count
 from .models import Idea, IdeaStar
 from django.views.decorators.http import require_POST
+from .forms import IdeaForm
 
 # 아이디어 리스트 출력
 def idea_list(request):
@@ -57,3 +58,16 @@ def adjust_interest(request, idea_id):
     
     idea.save()
     return redirect('ideas:idea_list')
+
+#아이디어 등록
+@login_required
+def idea_create(request):
+    if request.method == 'POST':
+        form = IdeaForm(request.POST, request.FILES)
+        if form.is_valid():
+            idea = form.save()
+            return redirect('ideas:idea_list')
+    else:
+        form = IdeaForm()
+    
+    return render(request, 'ideas/idea_form.html', {'form':form})
