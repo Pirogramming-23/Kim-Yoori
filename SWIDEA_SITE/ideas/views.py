@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.db.models import Count
 from .models import Idea, IdeaStar
+from django.views.decorators.http import require_POST
 
 # 아이디어 리스트 출력
 def idea_list(request):
@@ -40,4 +41,19 @@ def toggle_star(request, idea_id):
     else:
         IdeaStar.objects.create(user=user, idea=idea)
     #다시 아이디어 리스트로 이동
+    return redirect('ideas:idea_list')
+
+#관심도 조절 
+@require_POST
+@login_required
+def adjust_interest(request, idea_id):
+    idea = get_object_or_404(Idea, id=idea_id)
+    action = request.POST.get('action')
+
+    if action == 'increase':
+        idea.interest += 1
+    elif action == 'decrease' and idea.interest > 0:
+        idea.interest -= 1
+    
+    idea.save()
     return redirect('ideas:idea_list')
