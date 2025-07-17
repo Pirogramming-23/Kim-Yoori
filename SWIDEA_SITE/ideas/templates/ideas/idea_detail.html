@@ -1,0 +1,48 @@
+{% extends 'ideas/base.html' %}
+
+{% block title %}{{ idea.title }}{% endblock %}
+
+{% block content %}
+<h1>{{ idea.title }}</h1>
+
+<img src="{{ idea.image.url }}" width="300"><br>
+
+<p><strong>관심도: </strong> {{ idea.interest }}</p>
+<p><strong>내용: </strong> {{ idea.content }}</p>
+<p><strong>개발툴:</strong>
+    <a href="#">{{ idea.devtool.name }}</a>
+</p>
+
+<p><strong>등록일:</strong> {{ idea.created_at|date:"Y-m-d H:i" }}</p>
+
+<!--버튼 추가-->
+<p>
+    <a href="{% url 'ideas:idea_list' %}">목록</a>
+    <a href="{% url 'ideas:idea_update' idea.id %}">수정</a>
+    <form method="POST" action="{% url 'ideas:idea_delete' idea.id %}" style="display: inline;">
+        {% csrf_token %}
+        <a href="{% url 'ideas:idea_delete' idea.id %}">삭제</a>
+    </form>
+</p>
+
+{% if user.is_authenticated %}
+<form method="POST" action="{% url 'ideas:toggle_star' idea.id %}">
+    {% csrf_token %}
+    {% if is_starred %}
+    <button type="submit">찜 취소</button>
+    {% else %}
+    <button type="submit">찜하기</button>
+    {% endif %}
+</form>
+{% endif %}
+{% if idea.tags.all %}
+<p>
+    <strong>태그:</strong>
+    {% for tag in idea.tags.all %}
+        <a href="{% url 'ideas:idea_by_tag' tag.name %}">#{{ tag.name }}</a>
+        {% if not forloop.last %}, {% endif %}
+    {% endfor %}
+</p>
+{% endif %}
+
+{% endblock %}

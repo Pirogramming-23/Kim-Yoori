@@ -1,0 +1,24 @@
+{% for idea in ideas %}
+<div style="margin-bottom: 20px;">
+    <a href="{% url 'ideas:idea_detail' idea.id %}">{{ idea.title }}</a><br>
+    <button class="star-toggle-btn" data-idea-id="{{ idea.id }}">
+        {% if idea.id in star_dict %}
+            ⭐ 찜취소
+        {% else %}
+            ☆ 찜하기
+        {% endif %}
+    </button>
+    <img src="{{ idea.image.url }}" width="200"><br>
+
+    <p>
+        관심도: <span class="interest-count" data-idea-id="{{ idea.id }}">{{ idea.interest }}</span>
+        {% if user.is_authenticated %}
+            <button class="interest-btn" data-idea-id="{{ idea.id }}" data-action="increase">+</button>
+            <button class="interest-btn" data-idea-id="{{ idea.id }}" data-action="decrease">-</button>
+        {% endif %}
+    </p>
+    <p>개발툴: {{ idea.devtool.name }}</p>
+</div>
+{% empty %}
+<p>검색 결과가 없습니다.</p>
+{% endfor %}

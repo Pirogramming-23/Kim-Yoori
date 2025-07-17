@@ -1,0 +1,14 @@
+{% extends 'ideas/base.html' %}
+
+{% block title %}아이디어 삭제{% endblock %}
+
+{% block content %}
+<h1>삭제 확인</h1>
+<p>"{{ idea.title }}"을 삭제하시겠습니까?</p>
+
+<form method="POST">
+    {% csrf_token %}
+    <button type="submit">네, 삭제할게요</button>
+    <a href="{% url 'ideas:idea_detail' idea.id %}">취소</a>
+</form>
+{% endblock %}

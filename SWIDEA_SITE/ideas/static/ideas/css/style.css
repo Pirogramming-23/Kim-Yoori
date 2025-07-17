@@ -1,0 +1,345 @@
+/* 전체 페이지 기본 설정 */
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+  background-color: #f3f5f7;
+  margin: 0;
+  padding: 0;
+  color: #333;
+}
+
+/* 제목 스타일 */
+h1 {
+  text-align: center;
+  color: #4a5c36;
+  margin-top: 40px;
+  font-size: 2.2rem;
+  font-weight: bold;
+}
+
+/* 네비게이션 바 전체 */
+nav {
+  background-color: #4b5f3c;
+  padding: 12px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* 왼쪽: 사이트 이름 */
+.site-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #fff;
+}
+
+/* 오른쪽 메뉴 링크 */
+.nav-right {
+  display: flex;
+  gap: 30px;
+}
+
+.nav-right a {
+  color: #fff;
+  text-decoration: none;
+  padding: 8px 14px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.nav-right a:hover {
+  background-color: #637a53;
+}
+
+
+/* 검색 바 */
+.search-bar {
+  display: flex;
+  justify-content: center;
+  margin: 20px auto;
+  gap: 10px;
+}
+.search-bar input[type="text"] {
+  padding: 8px;
+  width: 200px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.search-bar button {
+  padding: 8px 12px;
+  background-color: #4a5c36;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.search-bar button:hover {
+  background-color: #3e4f2f;
+}
+
+/* 정렬 옵션 */
+.sort-options {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.sort-options a {
+  margin: 0 10px;
+  text-decoration: none;
+  color: #4a5c36;
+  font-weight: 500;
+}
+.sort-options a:hover {
+  text-decoration: underline;
+}
+
+/* 아이디어 카드 */
+.idea-list {
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 20px auto;
+  width: 70%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s;
+}
+.idea-list:hover {
+  transform: translateY(-3px);
+}
+.idea-list img {
+  display: block;
+  margin: 10px auto;
+  border-radius: 6px;
+}
+.idea-list p {
+  text-align: center;
+  font-size: 1rem;
+}
+.idea-list a {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #2b3a20;
+  text-decoration: none;
+}
+.idea-list a:hover {
+  text-decoration: underline;
+}
+
+/* 찜 버튼, 관심도 버튼 */
+.star-toggle-btn, .interest-btn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  margin: 0 5px;
+}
+.interest-count {
+  font-weight: bold;
+  color: #555;
+}
+
+/* 페이지네이션 */
+div span {
+  display: block;
+  text-align: center;
+  margin: 30px auto;
+}
+div span a {
+  margin: 0 10px;
+  color: #4a5c36;
+  text-decoration: none;
+  font-weight: 500;
+}
+div span a:hover {
+  text-decoration: underline;
+}
+
+/*----------*/
+
+/* 기본 설정 */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Noto Sans KR', sans-serif;
+    background-color: #f8f9fa;
+    color: #2d3436;
+}
+
+a {
+    text-decoration: none;
+    color: #2d3436;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* 헤더 */
+header {
+    background-color: #2d472c;
+    color: white;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.site-title {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+nav a {
+    margin-left: 1rem;
+    color: white;
+    font-weight: bold;
+}
+
+/* 검색창 */
+.search-bar {
+    display: flex;
+    justify-content: center;
+    margin: 2rem auto;
+    gap: 0.5rem;
+}
+
+.search-bar input {
+    width: 300px;
+    padding: 0.5rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.search-bar button {
+    padding: 0.5rem 1rem;
+    background-color: #2d472c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* 정렬 옵션 */
+.sort-options {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.sort-options a {
+    font-size: 0.9rem;
+    background: #dfe6e9;
+    padding: 0.4rem 0.8rem;
+    border-radius: 8px;
+}
+
+.idea-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  padding: 2rem 0;
+}
+
+.idea-card {
+  background-color: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  width: 220px;
+  padding: 1rem;
+  text-align: center;
+}
+
+.idea-card img {
+  width: 100%;
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.idea-card h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.3rem;
+}
+
+.star-toggle-btn {
+  background: none;
+  border: none;
+  font-size: 1.1rem;
+  cursor: pointer;
+  color: #e17055;
+  margin-bottom: 0.8rem;
+}
+
+.interest-btn {
+  background-color: #81ecec;
+  border: none;
+  border-radius: 5px;
+  padding: 0.2rem 0.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  margin-left: 0.3rem;
+}
+
+.interest-btn:hover {
+  background-color: #00cec9;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+
+/* 아이디어 리스트 카드 */
+.idea-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    border-radius: 1rem;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    padding: 1rem;
+    margin: 1rem auto;
+    width: 220px;
+}
+
+.idea-list img {
+    width: 100%;
+    height: auto;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+/* 찜 버튼 */
+.star-toggle-btn {
+    background: none;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    color: #e17055;
+    margin-bottom: 0.5rem;
+}
+
+/* 관심도 */
+.interest-btn {
+    background-color: #81ecec;
+    border: none;
+    border-radius: 50%;
+    padding: 0.2rem 0.6rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin-left: 0.3rem;
+}
+
+.interest-btn:hover {
+    background-color: #00cec9;
+}
+
+/* 페이지네이션 */
+div > span {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+    gap: 1rem;
+}
