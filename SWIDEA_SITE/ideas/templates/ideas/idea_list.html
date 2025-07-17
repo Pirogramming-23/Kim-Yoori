@@ -5,123 +5,129 @@
 {% block content %}
 <h1>아이디어 목록</h1>
 
-<!--검색창 추가-->
-<form id="search-form">
-    <input type="text" id="search-input" name="q" placeholder="검색어 입력">
+<!-- 검색창 -->
+<form method="GET" action="." class="search-bar">
+  <input type="text" name="q" placeholder="검색어 입력" value="{{ request.GET.q }}">
+  <button type="submit">🔍</button>
 </form>
 
-<div id="idea-results">
-    {% include 'ideas/partials/idea_list.html' %}
-</div>
-
-
-<!-- 사용자가 클릭하면 GET 방식으로 URL에 ?sort=~~ 파라미터가 붙음 -->
-<p>
+<!-- 정렬 옵션 -->
+<div class="sort-options">
     <a href="?sort=stars">찜하기순</a>
     <a href="?sort=name">이름순</a>
     <a href="?sort=oldest">등록순</a>
     <a href="?sort=latest">최신순</a>
-</p>
+</div>
 
-{% for idea in ideas %}
-<div style="margin-bottom: 20px;">
-    <!--제목 클릭하면 다른 페이지로 연결-->
-    <a href="{% url 'ideas:idea_detail' idea.id %}">{{ idea.title }}</a><br>
-    <!--찜 버튼-->
-    <button class="star-toggle-btn" data-idea-id="{{ idea.id }}">
+<!-- 아이디어 카드 리스트 -->
+<div class="idea-container">
+  {% for idea in ideas %}
+    <div class="idea-card">
+
+      <!-- 이미지 -->
+      <img src="{{ idea.image.url }}" alt="{{ idea.title }} 이미지">
+
+      <!-- 제목 -->
+      <h3>
+        <a href="{% url 'ideas:idea_detail' idea.id %}">{{ idea.title }}</a>
+      </h3>
+
+      <!-- 찜 버튼 -->
+      <button class="star-toggle-btn" data-idea-id="{{ idea.id }}">
         {% if idea.id in star_dict %}
-            ⭐ 찜취소
+          ⭐ 찜취소
         {% else %}
-            ☆ 찜하기
+          ☆ 찜하기
         {% endif %}
-    </button>
-    <!--썸네일 이미지 추가-->
-    <img src="{{ idea.image.url }}" width="200"><br>
+      </button>
 
-    <p>
-        관심도: <span class="interest-count" data-idea-id="{{ idea.id }}">{{ idea.interest }}</span>
+      <!-- 관심도 -->
+      <p>
+        관심도:
+        <span class="interest-count" data-idea-id="{{ idea.id }}">{{ idea.interest }}</span>
         {% if user.is_authenticated %}
-            <button class="interest-btn" data-idea-id="{{ idea.id }}" data-action="increase">+</button>
-            <button class="interest-btn" data-idea-id="{{ idea.id }}" data-action="decrease">-</button>
+          <button class="interest-btn" data-idea-id="{{ idea.id }}" data-action="increase">+</button>
+          <button class="interest-btn" data-idea-id="{{ idea.id }}" data-action="decrease">-</button>
         {% endif %}
-    </p>
+      </p>
 
+      <!-- 개발툴 -->
+      <p>개발툴: {{ idea.devtool.name }}</p>
 
-    <p>개발툴: {{ idea.devtool.name }}</p>
-    
-</div>
-{% empty %}
+    </div>
+  {% empty %}
     <p>등록된 아이디어가 없습니다.</p>
-{% endfor %}
-
-<!--페이지네이션 링크-->
-<div>
-    <span>
-        {% if page_obj.has_previous %}
-            <a href="?page={{ page_obj.previous_page_number }}{% if request.GET.sort %}&sort={{ request.GET.sort }}{% endif %}">이전</a>
-        {% endif %}
-
-        페이지 {{ page_obj.number }} / {{ page_obj.paginator.num_pages }}
-
-        {% if page_obj.has_next %}
-            <a href="?page={{ page_obj.next_page_number }}{% if request.GET.sort %}&sort={{ request.GET.sort }}{% endif %}">다음</a>
-        {% endif %}
-    </span>
+  {% endfor %}
 </div>
 
+<!-- 페이지네이션 -->
+<div class="pagination">
+  <span>
+    {% if page_obj.has_previous %}
+      <a href="?page={{ page_obj.previous_page_number }}{% if request.GET.sort %}&sort={{ request.GET.sort }}{% endif %}">이전</a>
+    {% endif %}
+
+    페이지 {{ page_obj.number }} / {{ page_obj.paginator.num_pages }}
+
+    {% if page_obj.has_next %}
+      <a href="?page={{ page_obj.next_page_number }}{% if request.GET.sort %}&sort={{ request.GET.sort }}{% endif %}">다음</a>
+    {% endif %}
+  </span>
+</div>
+
+<!-- JS -->
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const starButtons = document.querySelectorAll('.star-toggle-btn');
+  document.addEventListener('DOMContentLoaded', function() {
+      const starButtons = document.querySelectorAll('.star-toggle-btn');
 
-        /*찜 버튼*/
-        starButtons.forEach(button => {
-            button.addEventListener('click', function(){
-                const ideaId = this.dataset.ideaId;
+      // 찜 버튼 처리
+      starButtons.forEach(button => {
+          button.addEventListener('click', function(){
+              const ideaId = this.dataset.ideaId;
 
-                fetch(`/star/${ideaId}/`, {
-                    method: 'POST',
-                    headers: {
-                        'X-CSRFToken' : '{{ csrf_token }}',
-                    },
-                })
-                .then(response => {
-                    if(response.ok){
-                        this.textContent = this.textContent.includes('☆') ? '⭐ 찜취소' : '☆ 찜하기';
-                    } else {
-                        alert('실패했어요!');
-                    }
-                });
-            });
-        });
+              fetch(`/star/${ideaId}/`, {
+                  method: 'POST',
+                  headers: {
+                      'X-CSRFToken' : '{{ csrf_token }}',
+                  },
+              })
+              .then(response => {
+                  if(response.ok){
+                      this.textContent = this.textContent.includes('☆') ? '⭐ 찜취소' : '☆ 찜하기';
+                  } else {
+                      alert('실패했어요!');
+                  }
+              });
+          });
+      });
 
-        //관심도 Ajax 처리//
-            const interestButtons = document.querySelectorAll('.interest-btn');
-            interestButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const ideaId = this.dataset.ideaId;
-                    const action = this.dataset.action;
+      // 관심도 처리
+      const interestButtons = document.querySelectorAll('.interest-btn');
+      interestButtons.forEach(button => {
+          button.addEventListener('click', function() {
+              const ideaId = this.dataset.ideaId;
+              const action = this.dataset.action;
 
-                    fetch(`/interest/${ideaId}/`, {
-                        method: 'POST',
-                        headers: {
-                            'X-CSRFToken': '{{ csrf_token }}',
-                            'Content-Type': 'application/x-www-form-urlencoded',
-                        },
-                        body: `action=${action}`
-                    })
-                    .then(response=> response.json())
-                    .then(data => {
-                        if (data.success) {
-                            const countSpan = document.querySelector(`.interest-count[data-idea-id="${ideaId}"]`);
-                            countSpan.textContent = data.interest;
-                        } else{
-                            alert('관심도 변경 실패');
-                        }
-                    });
-                });
-            });
-        });    
-
+              fetch(`/interest/${ideaId}/`, {
+                  method: 'POST',
+                  headers: {
+                      'X-CSRFToken': '{{ csrf_token }}',
+                      'Content-Type': 'application/x-www-form-urlencoded',
+                  },
+                  body: `action=${action}`
+              })
+              .then(response=> response.json())
+              .then(data => {
+                  if (data.success) {
+                      const countSpan = document.querySelector(`.interest-count[data-idea-id="${ideaId}"]`);
+                      countSpan.textContent = data.interest;
+                  } else{
+                      alert('관심도 변경 실패');
+                  }
+              });
+          });
+      });
+  });
 </script>
 
 {% endblock %}

@@ -1,23 +1,22 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}아이디어 사이트{% endblock %}</title>
-    <style>
-        body{padding: 20px;}
-        nav{margin-bottom: 30px;}
-        a{text-decoration: none; color: navy;}
-        a:hover{cursor: pointer;}
-    </style>
+    <link rel="stylesheet" href="{% static 'ideas/css/style.css' %}">
+
 </head>
 <body>
-    <nav>
+    <header class="nav-left">
+    <h1 class="site-title">아이디어 사이트</h1>
+    <nav class="nav-right">
         <a href="{% url 'ideas:idea_list' %}">아이디어 목록</a>
         <a href="{% url 'ideas:idea_create' %}">아이디어 등록</a>
         <a href="{% url 'ideas:devtool_list' %}">개발툴 목록</a>
     </nav>
-    <hr>
+    </header>
 
     {% block content %}
     {% endblock %}
