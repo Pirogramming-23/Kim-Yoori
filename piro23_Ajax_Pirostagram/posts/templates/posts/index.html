@@ -6,6 +6,16 @@
       <p><strong>{{ post.author.username }}</strong></p>
       <img src="{{ post.image.url }}" alt="Post Image" width="400">
       <p>{{ post.content }}</p>
+
+      <button class="like-button" data-post-id="{{ post.id }}">
+        {% if user in post.likes.all %}
+        ❤️
+        {% else %}
+        🤍
+        {% endif %}
+      </button>
+      <span class="like-count" id="like-count-{{ post.id }}">{{ post.likes.count }}</span>명 좋아함
     </div>
+
   {% endfor %}
 {% endblock %}
