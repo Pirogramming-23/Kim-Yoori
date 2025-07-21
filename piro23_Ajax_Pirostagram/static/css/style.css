@@ -235,6 +235,23 @@ body {
   cursor: pointer;
   padding: 0 10px;
 }
+/* 댓글 한 줄 정렬 */
+.comment {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+/* 삭제 버튼 스타일 */
+.delete-comment {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    font-size: 1rem; /* 적당한 크기 조절 */
+    margin-left: 10px;
+}
 
 /* ===== 반응형 처리 ===== */
 @media (max-width: 768px) {
@@ -250,3 +267,23 @@ body {
     height: 50%;
   }
 }
+
+.delete-comment {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: red;
+  margin-left: 10px;
+}
+
+.modal-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+

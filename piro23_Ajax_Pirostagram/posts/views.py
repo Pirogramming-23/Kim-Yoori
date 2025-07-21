@@ -3,6 +3,8 @@ from django.shortcuts import render, get_object_or_404
 from .models import Post, Comment
 from django.contrib.auth.models import User
 from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_POST
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def index(request):
@@ -37,7 +39,10 @@ def toggle_like(request, post_id):
 
 def post_detail(request, post_id):
     post = get_object_or_404(Post, id=post_id)
-    return render(request, 'posts/post_detail.html', {'post':post})
+    return render(request, 'posts/post_detail.html', {
+        'post': post,
+        'user': request.user, 
+    })
 
 import json
 @csrf_exempt
@@ -57,3 +62,14 @@ def add_comment(request, post_id):
             return JsonResponse({'success': False, 'error': str(e)}, status=500)
 
     return JsonResponse({'success': False, 'error': '로그인이 필요합니다.'}, status=401)
+
+@require_POST
+@login_required
+def delete_comment(request, comment_id):
+    comment = get_object_or_404(Comment, id=comment_id)
+
+    if request.user == comment.author:
+        comment.delete()
+        return JsonResponse({'success': True})
+    else:
+        return JsonResponse({'success': False, 'error': '권한이 없습니다.'}, status=403)

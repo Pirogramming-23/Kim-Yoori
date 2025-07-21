@@ -1,6 +1,22 @@
+function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.startsWith(name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+
 document.addEventListener('DOMContentLoaded', function () {
     bindLikeButtons();
     bindCommentForms();
+    bindDeleteCommentButtons();
 
     const thumbnails = document.querySelectorAll('.post-thumbnail');
     thumbnails.forEach(thumbnail => {
@@ -20,6 +36,15 @@ document.addEventListener('DOMContentLoaded', function () {
                     // 모달 내에 바인딩 다시 설정
                     bindLikeButtons();
                     bindCommentForms();
+                    bindDeleteCommentButtons();
+                    
+                    const closeButton = document.querySelector('.modal-close');
+                    if (closeButton) {
+                        closeButton.addEventListener('click', () => {
+                            const modal = document.querySelector('.modal-wrapper');
+                            if (modal) modal.remove();
+                        });
+                    }
                 });
         });
     });
@@ -104,19 +129,37 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         });
     }
+});
 
-    function getCookie(name) {
-        let cookieValue = null;
-        if (document.cookie && document.cookie !== '') {
-            const cookies = document.cookie.split(';');
-            for (let i = 0; i < cookies.length; i++) {
-                const cookie = cookies[i].trim();
-                if (cookie.startsWith(name + '=')) {
-                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                    break;
+function bindDeleteCommentButtons() {
+    const deleteButtons = document.querySelectorAll('.delete-comment');
+    deleteButtons.forEach(button => {
+        button.addEventListener('click', function () {
+            const commentId = this.dataset.commentId;
+
+            if (!confirm('정말 삭제하시겠습니까?')) return;
+
+            fetch(`/comment/${commentId}/delete/`, {
+                method: 'POST',
+                headers: {
+                    'X-CSRFToken': getCookie('csrftoken'),
+                },
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    this.closest('.comment').remove();  
+                } else {
+                    alert(data.error || '삭제 실패');
                 }
-            }
-        }
-        return cookieValue;
+            });
+        });
+    });
+}
+
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        const modal = document.querySelector('.modal-wrapper');
+        if (modal) modal.remove();
     }
 });
