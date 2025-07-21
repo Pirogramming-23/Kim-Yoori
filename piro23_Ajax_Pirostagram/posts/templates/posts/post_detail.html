@@ -1,0 +1,48 @@
+{% load static %}
+<div class="modal-wrapper">
+    <div class="modal-content">
+        <!--왼쪽에 이미지 위치-->
+        <div class="modal-image">
+            <img src="{{ post.image.url }}" alt="게시물 이미지">
+        </div>
+        <!--오른쪽에 게시글 정보와 댓글창 구현-->
+        <div class="modal-right">
+            <!--작성자 정보-->
+            <div class="modal-header">
+                <strong>{{ post.author.username }}</strong>
+            </div>
+            <hr>
+            <!-- 게시글 내용 -->
+            <div class="modal-post-content">
+                <strong>{{ post.author.username }}</strong> {{ post.content }}
+            </div>
+            <div class="modal-comments">
+                {% for comment in post.comment_set.all %}
+                <div class="comment">
+                    <strong>{{ comment.author.username }}</strong>{{ comment.content }}
+                </div>
+                {% empty %}
+                <p class="no-comment">아직 댓글이 없습니다.</p>
+                {% endfor %}
+            </div>
+            <hr>
+            <!--좋아요-->
+            <div class="modal-actions">
+                <button class="like-button" data-post-id="{{ post.id }}">
+                    {% if user in post.likes.all %}
+                     ❤️
+                    {% else %}
+                    🤍
+                    {% endif %}
+                </button>
+                <span id="like-count-{{ post.id }}">{{ post.likes.count }}</span>명 좋아요
+            </div>
+            <!--댓글 입력창-->
+            <form class="comment-form" data-post-id="{{ post.id }}">
+                {% csrf_token %}
+                <input type="text" name="content" placeholder="댓글 달기..." required>
+                <button type="submit">게시</button>
+            </form>
+        </div>
+    </div>
+</div>

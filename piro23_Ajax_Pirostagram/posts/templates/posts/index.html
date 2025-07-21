@@ -1,21 +1,45 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
-  {% for post in posts %}
-    <div class="post">
-      <p><strong>{{ post.author.username }}</strong></p>
-      <img src="{{ post.image.url }}" alt="Post Image" width="400">
-      <p>{{ post.content }}</p>
-
-      <button class="like-button" data-post-id="{{ post.id }}">
-        {% if user in post.likes.all %}
-        ❤️
-        {% else %}
-        🤍
-        {% endif %}
-      </button>
-      <span class="like-count" id="like-count-{{ post.id }}">{{ post.likes.count }}</span>명 좋아함
+<!-- 프로필 정보 -->
+<section class="profile-info">
+  <img src="{% static 'img/default-profile.jpg' %}" alt="프로필 사진" class="profile-picture">
+  <div class="profile-text">
+    <h2 class="username">{{ user_profile.username }}</h2>
+    <div class="profile-stats">
+      <span>게시물 <strong>{{ post_count }}</strong></span>
+      <span>팔로워 <strong>426</strong></span>
+      <span>팔로우 <strong>408</strong></span>
     </div>
+    <div class="profile-name">{{ user_profile.get_full_name }}</div>
+  </div>
+</section>
 
+<!-- 하이라이트 -->
+<section class="highlight-section">
+  <div class="highlight-item">
+    <img src="{% static 'img/folder.png' %}" alt="하이라이트" class="highlight-img">
+    <p class="highlight-label">2025</p>
+  </div>
+  <div class="highlight-item">
+    <img src="{% static 'img/folder.png' %}" alt="하이라이트" class="highlight-img">
+    <p class="highlight-label">2024</p>
+  </div>
+</section>
+
+<!-- 게시물 그리드 -->
+<section class="post-grid">
+  {% for post in posts %}
+    {% if post.image %}
+      <div class="post-item">
+        <img src="{{ post.image.url }}" alt="게시물 이미지" class="post-thumbnail" data-post-id="{{ post.id }}">
+      </div>
+    {% else %}
+      <p style="color: red;">(이미지 없음)</p>
+    {% endif %}
+  {% empty %}
+    <p>게시물이 없습니다.</p>
   {% endfor %}
+</section>
 {% endblock %}
