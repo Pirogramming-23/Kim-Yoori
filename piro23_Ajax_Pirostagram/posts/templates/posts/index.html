@@ -2,6 +2,8 @@
 {% load static %}
 
 {% block content %}
+<input type="text" id="search-input" placeholder="게시글 검색..." />
+<div id="search-results"></div>
 <!-- 프로필 정보 -->
 <section class="profile-info">
   <img src="{% static 'img/default-profile.jpg' %}" alt="프로필 사진" class="profile-picture">
@@ -28,6 +30,15 @@
   </div>
 </section>
 
+<form method="get" id="sort-form">
+  <label for="sort-select">정렬 기준:</label>
+  <select name="sort" id="sort-select">
+    <option value="recent" {% if request.GET.sort == "recent" %}selected{% endif %}>최신순</option>
+    <option value="likes" {% if request.GET.sort == "likes" %}selected{% endif %}>좋아요순</option>
+    <option value="comments" {% if request.GET.sort == "comments" %}selected{% endif %}>댓글순</option>
+  </select>
+</form>
+
 <!-- 게시물 그리드 -->
 <section class="post-grid">
   {% for post in posts %}
@@ -42,4 +53,10 @@
     <p>게시물이 없습니다.</p>
   {% endfor %}
 </section>
+
+<script>
+  document.getElementById('sort-select').addEventListener('change', function () {
+    document.getElementById('sort-form').submit();
+  });
+</script>
 {% endblock %}

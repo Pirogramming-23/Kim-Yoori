@@ -1,0 +1,7 @@
+{% for post in posts %}
+  <div class="search-result-post">
+    <img src="{{ post.image.url }}" alt="Post Image" class="search-result-image post-thumbnail" data-post-id="{{ post.id }}">
+  </div>
+{% empty %}
+  <p>검색 결과가 없습니다.</p>
+{% endfor %}

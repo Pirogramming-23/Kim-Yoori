@@ -286,4 +286,42 @@ body {
     cursor: pointer;
 }
 
+#search-input {
+    width: 100%;
+    padding: 8px;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
 
+.search-result-post {
+    display: inline-block;
+    margin: 10px;
+}
+
+.search-result-image {
+    width: 200px;  /* 혹은 원하는 고정 크기 */
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.search-result-image:hover {
+    transform: scale(1.05);
+}
+
+#search-results {
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+#sort-select {
+  padding: 6px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
