@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pirostagram</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script defer src="{% static 'js/ajax.js' %}"></script>
+</head>
+<body>
+    <div class="layout">
+        <aside class="sidebar">
+            <h1 class="logo">Instagram</h1>
+            <nav>
+                <li><a href="#">🏠 홈</a></li>
+                <li><a href="#">🔍 검색</a></li>
+                <li><a href="#">🧭 탐색 탭</a></li>
+                <li><a href="#">💬 메시지</a></li>
+                <li><a href="#">🔔 알림</a></li>
+                <li><a href="#">➕ 만들기</a></li>
+                <li><a href="#">👤 프로필</a></li>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            {% block content %}
+            {% endblock %}
+        </main>
+    </div>
+</body>
+</html>
